@@ -1,6 +1,7 @@
 .navbar {
 
     background-color: #fab2f9;
+    height: 100px;
   }
 
 .footer {
@@ -9,7 +10,12 @@
   }
 
 
-  .btn-primary {
-    background-color: #79e2e8 !important;
-    border-color: #79e2e8 !important;
-  }
+.btn-primary {
+  background-color: #79E2E8 !important;
+   border-color: #79E2E8 !important;
+}
+
+.btn-success {
+  background-color: #72A3B1 !important;
+   border-color: #72A3B1 !important;
+}
