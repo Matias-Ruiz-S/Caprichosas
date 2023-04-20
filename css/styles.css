@@ -15,7 +15,18 @@
    border-color: #79E2E8 !important;
 }
 
-.btn-success {
+.btn-info {
   background-color: #72A3B1 !important;
    border-color: #72A3B1 !important;
+   
+}
+
+.card {
+  transition: all 0.4s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 0 15px #0000004d; 
+  animation: animate__tada 0.5s; 
 }
