@@ -7,3 +7,9 @@
 
     background-color: #d066c0;
   }
+
+
+  .btn-primary {
+    background-color: #79e2e8 !important;
+    border-color: #79e2e8 !important;
+  }
