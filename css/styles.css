@@ -4,6 +4,11 @@
     height: 100px;
   }
 
+ .nav-item{
+  background-color: #fab2f9;
+  
+ } 
+
 .footer {
 
     background-color: #d066c0;
@@ -11,7 +16,7 @@
 
 
 .btn-primary {
-  background-color: #79E2E8 !important;
+  background-color: #72A3B1 !important;
    border-color: #79E2E8 !important;
 }
 
