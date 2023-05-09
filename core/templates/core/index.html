@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
+  {%load static%}
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | Caprichosa's</title>
-  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="{% static 'core/img/favicon.ico'%}">
+  <title>Caprichosa's</title>
   <!-- CSS -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="{% static 'core/css/styles.css'%}">
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
@@ -21,7 +21,7 @@
   <header>
     <nav class="navbar fixed-top navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img class="px-4" src="img/logo.svg" alt="Logo" height="60"></a>
+        <a class="navbar-brand" href="/"><img class="px-4" src="{% static 'core/img/logo.svg'%}" alt="Logo" height="60"></a>
         <button class="navbar-toggler"
         type="button"
         data-mdb-toggle="collapse"
@@ -61,7 +61,7 @@
     <div class="container my-5">
       <div class="row">
         <div class="col-md-6">
-          <img src="img/home.png" alt="" class="img-fluid">
+          <img src="{% static 'core/img/home.png'%}" alt="" class="img-fluid">
         </div>
         <div class="col-md-6 mt-5 mt-md-0">
           <h2>Caprichosa's</h2>
@@ -87,7 +87,7 @@
       role="tab"
       aria-controls="ex2-pills-1"
       aria-selected="true"
-      >Cafes</a
+      >Cafés</a
     >
   </li>
   <li class="nav-item" role="presentation">
@@ -99,7 +99,7 @@
       role="tab"
       aria-controls="ex2-pills-2"
       aria-selected="false"
-      >Cocteles</a
+      >Cócteles</a
     >
   </li>
   <li class="nav-item" role="presentation">
@@ -123,7 +123,7 @@
       role="tab"
       aria-controls="ex2-pills-4"
       aria-selected="false"
-      >Pateles</a
+      >Pasteles</a
     >
   </li>
   <li class="nav-item" role="presentation">
@@ -154,7 +154,7 @@
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe1.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe1.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 1</h5>
             <p class="card-text">Descripción 1.</p>
@@ -164,7 +164,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe2.jpeg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe2.jpeg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 2</h5>
             <p class="card-text">Descripción 2.</p>
@@ -174,7 +174,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe3.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe3.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 3</h5>
             <p class="card-text">Descripción 3.</p>
@@ -190,7 +190,7 @@
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe1.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe1.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 4</h5>
             <p class="card-text">Descripción 4.</p>
@@ -200,7 +200,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe2.jpeg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe2.jpeg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 5</h5>
             <p class="card-text">Descripción 5.</p>
@@ -210,7 +210,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe3.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe3.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 6</h5>
             <p class="card-text">Descripción 6.</p>
@@ -227,7 +227,7 @@
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe1.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe1.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 7</h5>
             <p class="card-text">Descripción 7.</p>
@@ -237,7 +237,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe2.jpeg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe2.jpeg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 8</h5>
             <p class="card-text">Descripción 8.</p>
@@ -247,7 +247,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/cafe3.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/cafe3.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 9</h5>
             <p class="card-text">Descripción 9.</p>
@@ -273,7 +273,7 @@
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/coctel1.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/coctel1.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 1</h5>
             <p class="card-text">Descripción 1.</p>
@@ -283,7 +283,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/coctel2.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/coctel2.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 2</h5>
             <p class="card-text">Descripción 2.</p>
@@ -293,7 +293,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/coctel3.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/coctel3.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 3</h5>
             <p class="card-text">Descripción 3.</p>
@@ -318,7 +318,7 @@
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/sandwich1.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/sandwich1.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 1</h5>
             <p class="card-text">Descripción 1.</p>
@@ -328,7 +328,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/sandwich2.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/sandwich2.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 2</h5>
             <p class="card-text">Descripción 2.</p>
@@ -338,7 +338,7 @@
       </div>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="img/sandwich3.jpg" class="card-img-top" alt="...">
+          <img src="{% static 'core/img/sandwich3.jpg'%}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">opcion 3</h5>
             <p class="card-text">Descripción 3.</p>
@@ -361,7 +361,7 @@
   <div class="row">
     <div class="col-md-4 mb-4">
       <div class="card">
-        <img src="img/.jpg" class="card-img-top" alt="...">
+        <img src="{% static 'core/img/test1x.jpg'%}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">opcion 1</h5>
           <p class="card-text">Descripción 1.</p>
@@ -371,7 +371,7 @@
     </div>
     <div class="col-md-4 mb-4">
       <div class="card">
-        <img src="img/.jpg" class="card-img-top" alt="...">
+        <img src="{% static 'core/img/test2x.jpg'%}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">opcion 2</h5>
           <p class="card-text">Descripción 2.</p>
@@ -381,7 +381,7 @@
     </div>
     <div class="col-md-4 mb-4">
       <div class="card">
-        <img src="img/.jpg" class="card-img-top" alt="...">
+        <img src="{% static 'core/img/test4x.jpg'%}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">opcion 3</h5>
           <p class="card-text">Descripción 3.</p>
@@ -404,7 +404,7 @@ aria-labelledby="ex2-tab-5"
 <div class="row">
   <div class="col-md-4 mb-4">
     <div class="card">
-      <img src="img/.jpg" class="card-img-top" alt="...">
+      <img src="{% static 'core/img/test4x.jpg'%}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">opcion 1</h5>
         <p class="card-text">Descripción 1.</p>
@@ -414,7 +414,7 @@ aria-labelledby="ex2-tab-5"
   </div>
   <div class="col-md-4 mb-4">
     <div class="card">
-      <img src="img/.jpg" class="card-img-top" alt="...">
+      <img src="{% static 'core/img/test1x.jpg'%}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">opcion 2</h5>
         <p class="card-text">Descripción 2.</p>
@@ -424,7 +424,7 @@ aria-labelledby="ex2-tab-5"
   </div>
   <div class="col-md-4 mb-4">
     <div class="card">
-      <img src="img/.jpg" class="card-img-top" alt="...">
+      <img src="{% static 'core/img/test2x.jpg'%}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">opcion 3</h5>
         <p class="card-text">Descripción 3.</p>
