@@ -1,13 +1,13 @@
 from django.urls import path
 
-from .views import home, template
-
-urlpatterns = [
-    path("", home,name="home"),
-    path("template.html", template,name="template"),
-]
+from .views import *
 
 urlpatterns = [
     path("", home,name="home"),
     path("template", template,name="template"),
+    path("nuevo-producto", Productoform,name="Productoform"),
+    path("crud", crud,name="crud"),
+    path("nueva-categoria", agreCategoria,name="agreCategoria"),
+    path("nuevo-ingrediente", agreIngrediente,name="agreIngrediente"),
 ]
+
