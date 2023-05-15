@@ -52,3 +52,7 @@ def agreIngrediente (request):
             formulario.save()
             datos['mensaje'] = "Datos guardados correctamente"
     return render(request,'core/agreIngrediente.html',datos)
+
+
+def SelecIngre(request):    
+    return render(request, 'core/ingresarIngredientes.html')

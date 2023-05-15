@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import *
 
+
 urlpatterns = [
     path("", home,name="home"),
     path("template", template,name="template"),
@@ -9,5 +10,6 @@ urlpatterns = [
     path("crud", crud,name="crud"),
     path("nueva-categoria", agreCategoria,name="agreCategoria"),
     path("nuevo-ingrediente", agreIngrediente,name="agreIngrediente"),
+    path("Seleccion-de-ingredientes", SelecIngre,name="SelecIngre"),
 ]
 

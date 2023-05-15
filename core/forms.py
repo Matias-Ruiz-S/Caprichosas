@@ -10,7 +10,8 @@ from .models import Producto,Categoria,Ingrediente
 class ProductoForm (ModelForm):
     class Meta :
         model = Producto
-        fields= ['Barcode','nombre','precio','stock','categoria',]
+        fields= ['nombre','precio','stock','categoria',]
+        exclude = ['Barcode']
 
 class CategoriaForm (ModelForm):
     class Meta :
