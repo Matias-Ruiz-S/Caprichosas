@@ -16,7 +16,8 @@ class ProductoForm (ModelForm):
 class CategoriaForm (ModelForm):
     class Meta :
         model = Categoria
-        fields= '__all__'
+        fields= ['nombre']
+        exclude = ['is_activo']
 
 class IngredienteForm (ModelForm):
     class Meta :

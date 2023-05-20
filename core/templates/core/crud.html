@@ -26,8 +26,8 @@
                 <tr>
                   <th scope="col">Barcode</th>
                   <th scope="col">nombre</th>
-                  <th scope="col">marca</th>
                   <th scope="col">precio</th>
+                  <th scope="col">categoria</th>
                   <th scope="col">stock</th>
                   <th scope="col">Opciones</th>
                 </tr>
@@ -37,8 +37,8 @@
                   <tr>
                     <td>{{ve.Barcode}}</td>
                     <td>{{ve.nombre}}</td>
-                    <td>{{ve.marca}}</td>
                     <td>{{ve.precio}}</td>
+                    <td>{{ve.categoria}}</td>
                     <td>{{ve.stock}}</td>
 
                   </tr>
@@ -84,15 +84,13 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Barcode</th>
-                  <th scope="col">nombre</th>
+                  <th scope="col">Nombre Categoria</th>
                 </tr>
               </thead>
                 <tbody>
                   {% for ve in categorias %}
                   <tr>
-                    <td>{{ve.idCategoria}}</td>
-                    <td>{{ve.nombreCategoria}}</td>
+                    <td>{{ve.nombre}}</td>
 
                   </tr>
                   {% endfor %}

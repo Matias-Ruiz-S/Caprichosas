@@ -2,8 +2,24 @@ from django.shortcuts import render
 from .forms import *
 from .models import Categoria,Producto,Ingrediente
 
-def home(request):    
-    return render(request, 'core/index.html')
+
+def home(request):  
+    cat  = Categoria.objects.filter(is_activo=True)  
+    producto  = Producto.objects.filter(is_activo=True)
+    contex = {'productos':producto,'categorias':cat}
+    return render(request, 'core/index.html',contex)
+
+
+
+def listar(request,slug):  
+    cat  = Categoria.objects.get(slug=slug)  
+    categorias = Categoria.objects.filter(is_activo=True)  
+    producto  = Producto.objects.filter(is_activo=True,categoria=cat)
+    contex = {'productos':producto,'categorias':categorias}
+    for i in producto:
+        print(i)
+    return render(request, 'core/list.html',contex)
+
 
 def template(request):    
     return render(request, 'core/template.html')
