@@ -1,23 +1,44 @@
 from django.db import models
+from autoslug import AutoSlugField
 
 # Create your models here.
 
 
 class Categoria(models.Model):
-    idCategoria = models.IntegerField(primary_key=True,verbose_name='Id de categoria')
-    nombreCategoria = models.CharField(max_length=50, verbose_name='nombre de la categoria')
+    nombre = models.CharField(max_length=50,primary_key=True, verbose_name='nombre de la categoria')
+    slug = AutoSlugField(populate_from='nombre')
+    is_activo = models.BooleanField(default=True)
     def __str__(self) -> str:
-        return self.nombreCategoria
+        return self.nombre
+    
+    def change_activo(self):
+        if self.is_activo == True:
+            self.is_activo == False
+        else:
+            if self.is_activo == False:
+                self.is_activo == True
 
 class Producto(models.Model):
     Barcode = models.CharField(max_length=6 ,primary_key=True ,verbose_name='Barcode')      
-    nombre =  models.CharField(max_length=50 ,verbose_name='nombre')      
+    nombre =  models.CharField(max_length=50 ,verbose_name='nombre')  
+    slug = AutoSlugField(populate_from='nombre')    
     precio = models.IntegerField(verbose_name='precio')
     stock = models.IntegerField(verbose_name='stock')
+    descripcion = models.TextField(max_length=600,verbose_name='descripcion')
+    is_activo = models.BooleanField(default=True)
+    destacado = models.BooleanField(default=False)
     categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
     
     def __str__(self) -> str:
         return self.nombre   
+    
+    def change_activo(self):
+        if self.is_activo == True:
+            self.is_activo == False
+        else:
+            if self.is_activo == False:
+                self.is_activo == True
+
     
 
 class Ingrediente(models.Model):
@@ -53,7 +74,9 @@ class Boleta(models.Model):
     id =  models.IntegerField(primary_key=True,verbose_name='id')
     id_orden = models.ForeignKey(OrdenPedido,on_delete=models.CASCADE)
     fecha =  models.CharField(max_length=50 ,verbose_name='fecha')     
-    descripcion =  models.CharField(max_length=150 ,verbose_name='descripcion')     
+    descripcion =  models.CharField(max_length=150 ,verbose_name='descripcion')
+
+  
 
      
 

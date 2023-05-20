@@ -11,7 +11,5 @@ urlpatterns = [
     path("nueva-categoria", agreCategoria,name="agreCategoria"),
     path("nuevo-ingrediente", agreIngrediente,name="agreIngrediente"),
     path("Seleccion-de-ingredientes", SelecIngre,name="SelecIngre"),
-    path("armapizza", armapizza,name="armapizza"),
-    path("armapan", armapan,name="armapan"),
 ]
 

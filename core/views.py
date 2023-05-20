@@ -8,14 +8,6 @@ def home(request):
 def template(request):    
     return render(request, 'core/template.html')
 
-def armapizza(request):    
-    return render(request, 'core/armapizza.html')
-
-def armapan(request):    
-    return render(request, 'core/armapan.html')
-
-
-
 
 def Productoform(request):
     datos = {'form': ProductoForm()}
@@ -30,17 +22,13 @@ def Productoform(request):
 
 def crud (request):
     producto  = Producto.objects.all()
-    Pdatos = {'producto': producto}
-              
     ingrediente  = Ingrediente.objects.all()
-    Idatos = {'ingrediente': ingrediente}
-
+    categoria  = Categoria.objects.all()
+    contex = {'ingredientes' : ingrediente,'productos':producto,'categorias':categoria}
   
 
-    return render(request,'core/crud.html',Pdatos)
+    return render(request,'core/crud.html',contex)
 
-    #ingrediente  = Ingrediente.objects.all()
-    #Idatos = {'Ingrediente': ingrediente }
 
 def agreCategoria (request): 
     datos = {'form': CategoriaForm()}

@@ -17,6 +17,9 @@
     <!-- table productos-->
     <div class="container">
         <h1>Listado de Productos</h1>
+        <li>
+          <a href="{%  url 'Productoform' %}"> Nuevo Producto</a>
+        </li>
         <div class="row">
             <table class="table">
               <thead>
@@ -30,7 +33,7 @@
                 </tr>
               </thead>
                 <tbody>
-                  {% for ve in producto %}
+                  {% for ve in productos %}
                   <tr>
                     <td>{{ve.Barcode}}</td>
                     <td>{{ve.nombre}}</td>
@@ -47,6 +50,9 @@
     <!-- table ingredientes-->
     <div class="container">
         <h1>Listado de ingredientes</h1>
+        <li>
+          <a href="{%  url 'agreIngrediente' %}"> nuevo ingrediente</a>
+        </li>
         <div class="row">
             <table class="table">
               <thead>
@@ -57,7 +63,7 @@
                 </tr>
               </thead>
                 <tbody>
-                  {% for ve in Ingrediente %}
+                  {% for ve in ingredientes %}
                   <tr>
                     <td>{{ve.id}}</td>
                     <td>{{ve.nombre}}</td>
@@ -71,6 +77,9 @@
     <!-- table categorias-->
     <div class="container">
         <h1>Listado de categorias</h1>
+        <li>
+          <a href="{%  url 'agreCategoria' %}"> Nueva Categoria</a>
+        </li>
         <div class="row">
             <table class="table">
               <thead>
@@ -80,10 +89,10 @@
                 </tr>
               </thead>
                 <tbody>
-                  {% for ve in Categoria %}
+                  {% for ve in categorias %}
                   <tr>
-                    <td>{{ve.Barcode}}</td>
-                    <td>{{ve.nombre}}</td>
+                    <td>{{ve.idCategoria}}</td>
+                    <td>{{ve.nombreCategoria}}</td>
 
                   </tr>
                   {% endfor %}
@@ -95,9 +104,9 @@
 
     <div class="container">
         <div>
-            <a href="{%  url 'Productoform' %}"> Nuevo Producto</a>
-            <a href="{%  url 'agreCategoria' %}"> Nueva Categoria</a>
-            <a href="{%  url 'agreIngrediente' %}"> nuevo ingrediente</a>
+           
+            
+     
 
         </div>
     </div>

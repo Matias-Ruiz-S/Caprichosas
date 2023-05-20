@@ -9,6 +9,6 @@ admin.site.register(tipoPago)
 admin.site.register(Cliente)
 admin.site.register(OrdenPedido)
 admin.site.register(ListaOrdenPedido)
-admin.site.register(Boleta)
+
 
 
