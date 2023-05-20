@@ -8,6 +8,14 @@ def home(request):
 def template(request):    
     return render(request, 'core/template.html')
 
+def armapizza(request):    
+    return render(request, 'core/armapizza.html')
+
+def armapan(request):    
+    return render(request, 'core/armapan.html')
+
+
+
 
 def Productoform(request):
     datos = {'form': ProductoForm()}

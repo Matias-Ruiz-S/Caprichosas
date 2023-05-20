@@ -32,12 +32,20 @@
    border-color: #79E2E8 !important;
 }
 
+.btn-primary:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05); 
+  box-shadow: 0 0 15px #0000004d; 
+  animation: animate__tada 1s; 
+}
+
 .btn-info {
   background-color: #72A3B1 !important;
    border-color: #72A3B1 !important;
    
 }
 
+/*
 .card {
   transition: all 0.4s ease-in-out;
 }
@@ -46,4 +54,18 @@
   transform: scale(1.05); 
   box-shadow: 0 0 15px #0000004d; 
   animation: animate__tada 0.5s; 
+}*/
+
+
+.arma footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+}
+
+
+.arma .container {
+  margin-top: 20px;
 }
