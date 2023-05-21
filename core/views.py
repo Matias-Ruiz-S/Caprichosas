@@ -16,8 +16,6 @@ def listar(request,slug):
     categorias = Categoria.objects.filter(is_activo=True)  
     producto  = Producto.objects.filter(is_activo=True,categoria=cat)
     contex = {'productos':producto,'categorias':categorias}
-    for i in producto:
-        print(i)
     return render(request, 'core/list.html',contex)
 
 

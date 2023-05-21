@@ -1,45 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
+{% extends 'core/index.html'%}
 
-  <div class="container">
-    <h1>Listado de Productos</h1>
-    <li>
-    </li>
-    <div class="row">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Barcode</th>
-              <th scope="col">nombre</th>
-              <th scope="col">precio</th>
-              <th scope="col">categoria</th>
-              <th scope="col">stock</th>
-              <th scope="col">Opciones</th>
-            </tr>
-          </thead>
-            <tbody>
-              {% for ve in productos %}
-              <tr>
-                <td>{{ve.Barcode}}</td>
-                <td>{{ve.nombre}}</td>
-                <td>{{ve.precio}}</td>
-                <td>{{ve.categoria}}</td>
-                <td>{{ve.stock}}</td>
-  
-              </tr>
-            
-            </tbody>
-        </table>
+{% load static %}
+{% block content %}
+
+{% for i in productos%}
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{i.nombre}}</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
     </div>
   </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% empty %}
 
@@ -47,5 +31,4 @@
 
   {% endfor %}
 
-</body>
-</html>
+  {% endblock %}
