@@ -1,34 +1,24 @@
 {% extends 'core/index.html'%}
-
 {% load static %}
 {% block content %}
-
-{% for i in productos%}
 <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{i.nombre}}</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+{% for i in productos%}
+<div class="col-md-4">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="../../static/core/img/sandwich1.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{i.nombre}}</h5>
+      <p class="card-text"></p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 </div>
+
 
 {% empty %}
 
 <h1> NO hay productos</h1>
 
   {% endfor %}
-
+</div>
   {% endblock %}
