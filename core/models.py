@@ -24,6 +24,7 @@ class Producto(models.Model):
     slug = AutoSlugField(populate_from='nombre')    
     precio = models.IntegerField(verbose_name='precio')
     stock = models.IntegerField(verbose_name='stock')
+    imgurl = models.CharField(max_length=600,verbose_name='url_img')
     descripcion = models.TextField(max_length=600,verbose_name='descripcion')
     is_activo = models.BooleanField(default=True)
     destacado = models.BooleanField(default=False)
