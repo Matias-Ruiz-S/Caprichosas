@@ -67,8 +67,8 @@ def agreIngrediente (request):
 
 # CRUD funciones modificar
 
-def Mod_Producto(request, id):
-    producto = Producto.objects.get(Barcode=id)
+def Mod_Producto(request, Barcode):
+    producto = Producto.objects.get(Barcode=Barcode)
     datos = {
         'form': ProductoForm(instance=producto)
     }
@@ -77,14 +77,14 @@ def Mod_Producto(request, id):
         if formulario.is_valid:
             formulario.save()
             datos['mensaje'] = "Modificados correctamente"
-    return render(request, 'core/mod_producto.html', datos)
+    return render(request, 'core/modProducto.html', datos)
 
 
 
 # CRUD funciones delete
 
-def delete_Producto(slug):
-    producto = Producto.objects.get(slug=slug)
+def delete_Producto(request,id):
+    producto = Producto.objects.get(Barcode=id)
     producto.delete()
     return redirect(to="crud")
 

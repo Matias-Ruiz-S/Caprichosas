@@ -40,7 +40,8 @@
                     <td>{{ve.precio}}</td>
                     <td>{{ve.categoria}}</td>
                     <td>{{ve.stock}}</td>
-                    <td>/td>
+                    <td><a href="{% url 'Mod_Producto' ve.Barcode %}">Modificar</a></td>
+                    <td><a href="{% url 'delete_Producto' ve.Barcode %}">Eliminar</a></td>
 
                   </tr>
                   {% endfor %}
