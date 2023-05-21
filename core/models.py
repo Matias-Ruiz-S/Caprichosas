@@ -43,11 +43,19 @@ class Producto(models.Model):
     
 
 class Ingrediente(models.Model):
-    id = models.IntegerField(primary_key=True,verbose_name='IdIngrediente')
-    nombre = models.CharField(max_length=50, verbose_name='nombre')
-    nomProducto = models.ForeignKey(Producto,on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=50,primary_key=True, verbose_name='nombre')
+    slug = AutoSlugField(populate_from='nombre')  
+    stock = models.IntegerField(verbose_name='stock')
+
     def __str__(self) -> str:
         return self.nombre
+
+class asigIngrediente(models.Model):
+    producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
+    Ingrediente = models.ForeignKey(Ingrediente,on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.producto, self.Ingrediente
+
 
 
 class tipoPago(models.Model):
@@ -76,9 +84,3 @@ class Boleta(models.Model):
     id_orden = models.ForeignKey(OrdenPedido,on_delete=models.CASCADE)
     fecha =  models.CharField(max_length=50 ,verbose_name='fecha')     
     descripcion =  models.CharField(max_length=150 ,verbose_name='descripcion')
-
-  
-
-     
-
-
