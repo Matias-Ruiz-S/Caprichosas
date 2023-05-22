@@ -2,7 +2,7 @@ import email
 from msilib.schema import Class
 from django import forms
 from django.forms import ModelForm
-from .models import Producto,Categoria,Ingrediente
+from .models import Producto,Categoria,Ingrediente,asigIngrediente
 
 
 
@@ -22,5 +22,10 @@ class CategoriaForm (ModelForm):
 class IngredienteForm (ModelForm):
     class Meta :
         model = Ingrediente
+        fields= '__all__'
+
+class AsignarIngreForm (ModelForm):
+    class Meta :
+        model = asigIngrediente
         fields= '__all__'
 

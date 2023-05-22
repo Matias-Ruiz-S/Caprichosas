@@ -97,3 +97,14 @@ def delete_categoria(slug):
     producto = Categoria.objects.get(slug=slug)
     producto.delete()
     return redirect(to="crud")
+
+def asigIngre(request):
+    datos = {'form': AsignarIngreForm}
+    if request.method == 'POST':
+        formulario = AsignarIngreForm(request.POST)
+        if formulario.is_valid():
+            pass
+
+    return render(request,'core/asigIngre.html',datos)
+
+

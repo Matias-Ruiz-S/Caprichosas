@@ -13,5 +13,6 @@ urlpatterns = [
     path("crud", crud,name="crud"),
     path("nueva-categoria", agreCategoria,name="agreCategoria"),
     path("nuevo-ingrediente", agreIngrediente,name="agreIngrediente"),
+    path("asig-ingre", asigIngre,name="asigIngre"),
 ]
 
