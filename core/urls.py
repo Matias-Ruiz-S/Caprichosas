@@ -19,5 +19,7 @@ urlpatterns = [
     path("eliminar/<id>/", eliminar_producto, name="eliminar"),
     path("restar/<int:producto_id>/", restar, name="restar"),
     path("limpiar/<id>/", limpiar_carro, name="limpiar"),
+    path("pagar/<int:total>/", pagar,name="pagar"),
+    path("terminar/", terminar,name="terminar"),
 ]
 

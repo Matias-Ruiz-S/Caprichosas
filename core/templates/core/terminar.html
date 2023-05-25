@@ -17,7 +17,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="terminar">
   <header>
     <nav class="navbar fixed-top navbar-expand-lg">
       <div class="container-fluid">
@@ -39,86 +39,72 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Nosotros</a>
             </li>
-            <li class="nav-item px-5">
-              <div class="dropdown">
-                <button
-                class="dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-              <i class="fas fa-cart-shopping"></i>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {%include "core/widget.html"%}
-            </ul>
-          </div>
-            </li>
           </ul>
-        </div>
         </div>
       </div>
     </nav>
   </header>
-
-  <!-- Encabezado -->
-  <section>
-    <div class="container mt-5">
-      <h1 class="title">¡Bienvenidos a Caprichosa's!</h1>
-      <p class="lead">Ofrecemos la mejor comida y el mejor ambiente para que disfrutes con tus amigos y familiares.</p>
+<br>
+<br>
+<br>
+<br>
+<section>
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Pago realizado con éxito:</h1>
+      <table class="table table-light table-striped">
+        <tr>
+          <td>Resultado autenticación:</td>
+          <td>{{ response.vci }}</td>
+        </tr>
+        <tr>
+          <td>Monto:</td>
+          <td>${{ response.amount }}</td>
+        </tr>
+        <tr>
+          <td>Estado:</td>
+          <td>{{ response.status }}</td>
+        </tr>
+        <tr>
+          <td>Numero orden:</td>
+          <td>{{ response.buy_order }}</td>
+        </tr>
+        <tr>
+          <td>Detalle tarjeta:</td>
+          <td>{{ response.card_detail }}</td>
+        </tr>
+        <tr>
+          <td>Fecha y hora autorización:</td>
+          <td>{{ response.transaction_date }}</td>
+        </tr>
+        <tr>
+          <td>Código autorización:</td>
+          <td>{{ response.authorization_code }}</td>
+        </tr>
+        <tr>
+          <td>Tipo de pago:</td>
+          <td>{{ response.payment_type_code }}</td>
+        </tr>
+        <tr>
+          <td>Monto de las cuotas:</td>
+          <td>{{ response.installments_amount }}</td>
+        </tr>
+        <tr>
+          <td>Cantidad de cuotas:</td>
+          <td>{{ response.installments_number }}</td>
+        </tr>
+      </table>
+      <a class="btn btn-primary" href="/">Volver inicio</a>
     </div>
-  </section>
-
-  <!-- Sección de presentación -->
-  <section>
-    <div class="container my-5">
-      <div class="row">
-        <div class="col-md-6">
-          <img src="{% static 'core/img/home.png'%}" alt="" class="img-fluid">
-        </div>
-        <div class="col-md-6 mt-5 mt-md-0">
-          <h2>Caprichosa's</h2>
-          <p>Lorem ipsum, dolor sit amet Caprichosa's consectetur adipisicing elit. Blanditiis ad
-            inventore voluptatum velit eveniet est Caprichosa's laborum libero, sint dignissimos
-            maiores dolorum vel Caprichosa's facere doloribus tenetur earum. Eaque, molestiae aliquam! </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección de menú -->
-  <section>
-
-    <!-- Pills navs -->
-
-
-   
-
-<nav>
-
-  <ul class="nav nav-pills nav-justified mb-3 mx-5" id="ex1" role="tablist">
-    {% for ve in categorias %}
-    <li class="nav-item" role="presentation">
-    <a class="nav-link" href="{% url 'listar' ve.slug %}"> {{ve.nombre}}</a>
-    </li>
-  {% endfor %}
-  </ul>
-  
-  
-  
-  <!-- Pills navs -->
-  {% block content %}
-  {% endblock %}
-
-
+  </div>
 </section>
+  <br>
 
 
 
-  <!-- FOOTER -->
+<!-- FOOTER -->
 
-  <footer class="footer text-center text-white">
+<footer class="footer text-center text-white">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
       <!-- Section: Social media -->
@@ -153,4 +139,4 @@
 
 
 
-</html>
+</html>  

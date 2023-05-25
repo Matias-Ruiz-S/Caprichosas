@@ -22,7 +22,7 @@
                     class="btn btn-sm btn-success ">+</a>
                 ${{value.precio}}
                 <a href="{% url 'restar' value.producto_id  %}"
-                    class="btn btn-sm btn-success ">-</a>
+                    class="btn btn-sm btn-danger ">-</a>
             </td>
         </tr>
         {% endfor %}
@@ -40,6 +40,7 @@
         <tr>
             <td colspan="3">
                 Total: ${{importe_total_carro}}
+                <a class="nav-link" href="{% url 'pagar' total=importe_total_carro  %}"><button class="btn btn-primary">pagar</button></a>
             </td>
         </tr>
 

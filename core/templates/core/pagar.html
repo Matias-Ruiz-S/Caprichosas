@@ -17,7 +17,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="pagar">
   <header>
     <nav class="navbar fixed-top navbar-expand-lg">
       <div class="container-fluid">
@@ -39,86 +39,58 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Nosotros</a>
             </li>
-            <li class="nav-item px-5">
-              <div class="dropdown">
-                <button
-                class="dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-              <i class="fas fa-cart-shopping"></i>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {%include "core/widget.html"%}
-            </ul>
-          </div>
-            </li>
           </ul>
-        </div>
         </div>
       </div>
     </nav>
   </header>
 
-  <!-- Encabezado -->
-  <section>
-    <div class="container mt-5">
-      <h1 class="title">¡Bienvenidos a Caprichosa's!</h1>
-      <p class="lead">Ofrecemos la mejor comida y el mejor ambiente para que disfrutes con tus amigos y familiares.</p>
-    </div>
-  </section>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
-  <!-- Sección de presentación -->
-  <section>
-    <div class="container my-5">
-      <div class="row">
-        <div class="col-md-6">
-          <img src="{% static 'core/img/home.png'%}" alt="" class="img-fluid">
-        </div>
-        <div class="col-md-6 mt-5 mt-md-0">
-          <h2>Caprichosa's</h2>
-          <p>Lorem ipsum, dolor sit amet Caprichosa's consectetur adipisicing elit. Blanditiis ad
-            inventore voluptatum velit eveniet est Caprichosa's laborum libero, sint dignissimos
-            maiores dolorum vel Caprichosa's facere doloribus tenetur earum. Eaque, molestiae aliquam! </p>
+
+
+<section>
+<div class="container">
+    <div class="card ">
+        <div class="card-body">
+          <h5 class="card-title">Productos que va a comprar:</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key, value in request.session.carro.items %}
+              <tr>
+                <td>{{ value.nombre }}</td>
+                <td>{{ value.cantidad }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="container">
+            <form action="{{ response.url }}" method="POST">{% csrf_token %}
+              <input type="hidden" name="token_ws" value="{{ response.token }}">
+              <input type="hidden" name="username" value="{{ request.user.username }}">
+              <h3 class="mt-4">Total:</h3>
+              <h3>$ {{ total }}</h3>
+              <input type="submit" class="btn btn-primary" value="Pagar">
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Sección de menú -->
-  <section>
-
-    <!-- Pills navs -->
-
-
-   
-
-<nav>
-
-  <ul class="nav nav-pills nav-justified mb-3 mx-5" id="ex1" role="tablist">
-    {% for ve in categorias %}
-    <li class="nav-item" role="presentation">
-    <a class="nav-link" href="{% url 'listar' ve.slug %}"> {{ve.nombre}}</a>
-    </li>
-  {% endfor %}
-  </ul>
-  
-  
-  
-  <!-- Pills navs -->
-  {% block content %}
-  {% endblock %}
-
-
 </section>
 
+<!-- FOOTER -->
 
-
-  <!-- FOOTER -->
-
-  <footer class="footer text-center text-white">
+<footer class="footer text-center text-white">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
       <!-- Section: Social media -->
@@ -153,4 +125,4 @@
 
 
 
-</html>
+</html>  
