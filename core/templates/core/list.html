@@ -1,15 +1,17 @@
 {% extends 'core/index.html'%}
 {% load static %}
 {% block content %}
-<div class="row">
+<br>
+<div class="container">
+  <div class="row">
 {% for i in productos%}
-<div class="col-md-4">
-  <div class="card" style="width: 18rem;">
+    <div class="col-md-4 mb-4">
+  <div class="card">
     <img class="card-img-top" src="{{i.imgurl}}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{i.nombre}}</h5>
-      <p class="card-text"></p>
-      <a href="{% url 'agregar_producto' i.Barcode %}" class="btn btn-primary">Agregar al carrito</a>
+      <p class="card-text"> <strong>precio :</strong> ${{i.precio}} <br> <strong>disponibles :</strong> {{i.stock}}</p>
+      <a href="{% url 'agregar_producto' i.Barcode %}" class="btn btn-primary">Agregar al carrito</a>  
     </div>
   </div>
 </div>
@@ -21,4 +23,10 @@
 
   {% endfor %}
 </div>
+</div>
   {% endblock %}
+  
+
+
+
+
