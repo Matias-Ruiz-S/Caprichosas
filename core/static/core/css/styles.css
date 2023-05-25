@@ -47,7 +47,7 @@
 
 /*
 .card {
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;e
 }
 
 .card:hover {
@@ -75,3 +75,21 @@
 }
 
 
+.pagar footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+
+.terminar .card{
+  max-width: 800px;
+  padding: 20px;
+}
+
+.terminar section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
