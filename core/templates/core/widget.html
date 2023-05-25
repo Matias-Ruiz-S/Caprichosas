@@ -1,0 +1,47 @@
+<table class="text-uppercase container py-5 table table-bordered  text-center">
+    <thead>
+        <tr>
+            <th colspan="3" class="text-center">
+                Carro de Compras
+            </th>
+        </tr>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Suma</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if request.session.carro.items %}
+        {% for key, value in request.session.carro.items %}
+        <tr>
+            <td>{{value.nombre}}</td>
+            <td>{{value.cantidad}}</td>
+            <td class="align-item-center">
+                <a href="{% url 'agregar_producto' value.producto_id %}"
+                    class="btn btn-sm btn-success ">+</a>
+                ${{value.precio}}
+                <a href="{% url 'restar' value.producto_id  %}"
+                    class="btn btn-sm btn-success ">-</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">
+                <div class="alert alert-danger">
+                    Sin productos
+                </div>
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                Total: ${{importe_total_carro}}
+            </td>
+        </tr>
+
+    </tfoot>
+</table>

@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from  .carro  import Carro
 from .forms import *
 from .models import Categoria,Producto,Ingrediente
 
@@ -21,6 +22,13 @@ def listar(request,slug):
 
 def template(request):    
     return render(request, 'core/template.html')
+
+
+def detalleProducto(request,id): 
+    producto  = Producto.objects.filter(is_activo=True,Barcode=id)
+    contex = {'detalle': producto}   
+
+    return render(request, 'core/detalle.html',contex)
 
 
 
@@ -106,5 +114,32 @@ def asigIngre(request):
             pass
 
     return render(request,'core/asigIngre.html',datos)
+
+
+
+# carroo
+
+def agregar_producto(request, producto_id):
+    carro=Carro(request)
+    producto= Producto.objects.get(Barcode=producto_id)
+    carro.agregar(producto)
+    return redirect("home")
+
+def eliminar_producto(request, producto_id):
+    carro=Carro(request)
+    producto=Producto.objects.get(id=producto_id)
+    carro.eliminar(producto)
+    return redirect("home")
+
+def limpiar_carro(request, producto_id):
+    carro=Carro(request)
+    carro.limpiar_carro()
+    return redirect("home")
+
+def restar(request, producto_id):
+    carro=Carro(request)
+    producto= Producto.objects.get(Barcode=producto_id)
+    carro.restar_producto(producto)
+    return redirect("home")
 
 
