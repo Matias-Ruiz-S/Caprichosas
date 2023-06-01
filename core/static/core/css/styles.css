@@ -22,6 +22,51 @@
 .title {
   margin-top: 130px;
 }
+
+@font-face {
+  font-family: "greatwishes";
+  src: url(../fonts/greatwishes.otf);
+}
+
+.greatwishes {
+  font-family: "greatwishes";
+}
+
+.inicio{
+  height: 100vh;
+  background:linear-gradient(#8b0076e7, #8b007628),url(../img/bg.png);
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  position: relative;
+}
+.inicio .contenido-seccion{
+  max-width: 1100px;
+  margin: auto;
+}
+
+.inicio .info{
+  width:fit-content;
+  margin: auto;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.inicio .info h2{
+  font-size: 2.5rem;
+  font-style: italic;
+  letter-spacing: 3px;
+  font-family: greatwishes;
+}
+.inicio .info p{
+  margin: 20px;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
  
 .footer {
     background-color: #D066C0;
