@@ -10,16 +10,18 @@
     <img class="card-img-top" src="{{i.imgurl}}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{i.nombre}}</h5>
-      <p class="card-text"> <strong>precio :</strong> ${{i.precio}} <br> <strong>disponibles :</strong> {{i.stock}}</p>
-      <a href="{% url 'agregar_producto' i.Barcode %}" class="btn btn-primary">Agregar al carrito</a>  
+      <p class="card-text"> <strong>Precio:</strong> ${{i.precio}} <br> <strong>Disponibles:</strong> {{i.stock}}</p>
+      <div class="d-grid gap-2">
+        <a href="{% url 'agregar_producto' i.Barcode %}" class="btn btn-primary">Agregar al carrito</a>
+      </div>
     </div>
   </div>
 </div>
 
 
 {% empty %}
-
-<h1> NO hay productos</h1>
+<i class="fa-solid fa-exclamation-triangle text-center fa-5x pb-2"></i>
+<h2 class="list-error pb-5">No hay productos ingresados en esta categoría</h2>
 
   {% endfor %}
 </div>

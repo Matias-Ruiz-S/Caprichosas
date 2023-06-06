@@ -1,3 +1,10 @@
+body {
+  background-image: url(../img/bodybg.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 .navbar {
     background-color: #CCCCCC;
     height: 70px;
@@ -32,14 +39,33 @@
   font-family: "greatwishes";
 }
 
+@font-face {
+  font-family: "simplicity";
+  src: url(../fonts/simplicity.otf);
+}
+
+.simplicity {
+  font-family: "simplicity";
+}
+
+@font-face {
+  font-family: "vertiky";
+  src: url(../fonts/vertiky.ttf);
+}
+
+.vertiky {
+  font-family: "vertiky";
+}
+
 .inicio{
-  height: 100vh;
+  height: 50vh;
   background:linear-gradient(#8b0076e7, #8b007628),url(../img/bg.png);
   background-size: cover;
   background-position: center center;
   color: #fff;
   position: relative;
 }
+
 .inicio .contenido-seccion{
   max-width: 1100px;
   margin: auto;
@@ -49,7 +75,7 @@
   width:fit-content;
   margin: auto;
   position: absolute;
-  top:50%;
+  top:55%;
   left: 50%;
   transform: translate(-50%,-50%);
   text-align: center;
@@ -90,6 +116,11 @@
    
 }
 
+.nav-link{
+  font-family: vertiky;
+  --nav-pills-link-font-size: 100px;
+}
+
 /*
 .card {
   transition: all 0.4s ease-in-out;e
@@ -101,6 +132,14 @@
   animation: animate__tada 0.5s; 
 }*/
 
+.card-img-top {
+  aspect-ratio: 12/9.6;
+}
+
+.list-error{
+  text-align: center;
+  font-family: vertiky;
+}
 
 .arma footer{
   position: fixed;
