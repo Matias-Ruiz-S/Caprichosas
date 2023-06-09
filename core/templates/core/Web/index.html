@@ -66,14 +66,47 @@
     <div class="contenido-seccion">
       <div class="info">
         <h2>Bienvenidos a Caprichosa's</h2>
-        <p>El mejor lugar para pedir lo que quieras</p>
+        <p>El mejor lugar para pedir tu capricho</p>
       </div>
     </div>
   </section>
 
-  <!-- Sección de menú -->
+  <!-- Sección de Arma tu -->
   <section>
 
+    <ul class="nav nav-pills nav-justified mb-3 mx-5 pt-3" id="ex1" role="tablist">
+   
+      <li class="nav-item" role="presentation">
+      <a class="nav-link pill-link" href="#">{{ Arma.nombre }} </a>
+      </li>
+    </ul>
+  
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+   
+
+      <div class="carousel-item">
+        {% for i in armalist %}
+        <img class="d-block w-100" src='{{ i.url }}' alt="{{i.nombre}}">
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+ 
+
+
+  </section>
+
+
+ 
+  <!-- Sección de menú -->
+  <section>
     <!-- Pills navs -->
   <ul class="nav nav-pills nav-justified mb-3 mx-5 pt-3" id="ex1" role="tablist">
     {% for ve in categorias %}
@@ -88,7 +121,6 @@
   <!-- Pills navs -->
   {% block content %}
   {% endblock %}
-
 
 </section>
 

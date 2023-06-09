@@ -9,18 +9,26 @@ from transbank.error.transbank_error import TransbankError
 # INDEX funciones
 #Muestra la pagina principal
 def home(request):  
-    cat  = Categoria.objects.filter(is_activo=True)  
+    cat = Categoria.objects.exclude(nombre = 'Arma Tu') # TODAS las categorias menos Arma tu
+    catArma = Categoria.objects.get(nombre = 'Arma Tu') # trae solo cat armatu
     producto  = Producto.objects.filter(is_activo=True)
-    contex = {'productos':producto,'categorias':cat}
-    return render(request, 'core/index.html',contex)
+    productoArma  = Producto.objects.filter(is_activo=True,categoria=catArma)
+    contex = {'productos':producto,
+              'categorias':cat,
+              'Arma':catArma,
+              'armalist':productoArma}
+    return render(request, 'core/Web/index.html',contex)
 
 # Muestra los productos filtrados por categorias
 def listar(request,slug):  
-    cat  = Categoria.objects.get(slug=slug)  
-    categorias = Categoria.objects.filter(is_activo=True)  
+    cat  = Categoria.objects.get(slug=slug) 
+    catArma = Categoria.objects.get(nombre = 'Arma Tu') # trae solo cat armatu 
+    productoArma  = Producto.objects.filter(is_activo=True,categoria=catArma)
+    categorias = Categoria.objects.exclude(nombre = 'Arma Tu') # TODAS las categorias menos Arma tu
     producto  = Producto.objects.filter(is_activo=True,categoria=cat)
-    contex = {'productos':producto,'categorias':categorias}
-    return render(request, 'core/list.html',contex)
+    contex = {'productos':producto,'categorias':categorias, 'Arma':catArma,
+              'armalist':productoArma}
+    return render(request, 'core/Web/list.html',contex)
 
 
 def template(request):    
@@ -41,9 +49,11 @@ def detalleProducto(request,id):
 def crud (request):
     producto  = Producto.objects.all()
     ingrediente  = Ingrediente.objects.all()
-    categoria  = Categoria.objects.all()
-    contex = {'ingredientes' : ingrediente,'productos':producto,'categorias':categoria}
-    return render(request,'core/crud.html',contex)
+    categoria  = Categoria.objects.all() 
+    contex = {'ingredientes' : ingrediente,
+              'productos':producto,
+              'categorias':categoria,}
+    return render(request,'core/Crud/crud.html',contex)
 
 # Agrega un nuevo producto
 def Productoform(request):
@@ -54,7 +64,7 @@ def Productoform(request):
             formulario.save()
             datos['mensaje'] = "Datos guardados correctamente"
             
-    return render(request, 'core/agregarProducto.html', datos)
+    return render(request, 'core/Crud/agregarProducto.html', datos)
 
 # Agrega una nueva categoria
 def agreCategoria (request): 
@@ -64,7 +74,8 @@ def agreCategoria (request):
         if formulario.is_valid:
             formulario.save()
             datos['mensaje'] = "Datos guardados correctamente"
-    return render(request,'core/agreCategoria.html',datos)
+            return redirect('crud')
+    return render(request,'core/Crud/agreCategoria.html',datos)
 
 # Agrega un nuevo ingrediente
 def agreIngrediente (request):
@@ -74,7 +85,7 @@ def agreIngrediente (request):
         if formulario.is_valid:
             formulario.save()
             datos['mensaje'] = "Datos guardados correctamente"
-    return render(request,'core/agreIngrediente.html',datos)
+    return render(request,'core/Crud/agreIngrediente.html',datos)
 
 # CRUD funciones modificar
 
@@ -88,7 +99,7 @@ def Mod_Producto(request, Barcode):
         if formulario.is_valid:
             formulario.save()
             datos['mensaje'] = "Modificados correctamente"
-    return render(request, 'core/modProducto.html', datos)
+    return render(request, 'core/Crud/modProducto.html', datos)
 
 
 
@@ -116,7 +127,7 @@ def asigIngre(request):
         if formulario.is_valid():
             pass
 
-    return render(request,'core/asigIngre.html',datos)
+    return render(request,'core/Crud/asigIngre.html',datos)
 
 
 
@@ -159,22 +170,22 @@ def pagar(request,total):
         context ={'total':total,"response":response}
         print(amount)
 
-        return render(request, 'core/pagar.html', context) 
+        return render(request, 'core/Carrito/pagar.html', context) 
     except TransbankError as e:
         print(e.message)
         print(e.message)
         error =e.message
         context ={'total':total,"error":error,}
-        return render(request, 'core/pagar.html', context)
+        return render(request, 'core/Carrito/pagar.html', context)
     
 
 def terminar(request):
     token = request.GET.get("token_ws")
     try:
         response = Transaction().commit(token) 
-        return render(request, 'core/terminar.html',{"token": token,"response": response})
+        return render(request, 'core/Carrito/terminar.html',{"token": token,"response": response})
     except TransbankError as e:
         error =e.message
         print(e.message)
         print(token)
-        return render(request, 'core/terminar.html', {"error":error})
+        return render(request, 'core/Carrito/terminar.html', {"error":error})
