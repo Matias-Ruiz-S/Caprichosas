@@ -43,107 +43,22 @@
   </header>
 
   <!--CONTENIDO DE PAGINA-->
+<div>
+<div class="row">
+<a href="{% url 'Lcategorias'%}"> Categorias</a>
+<a href="{% url 'Lingredientes'%}"> Ingredientes</a>
+<a href="{% url 'Lproductos'%}"> Productos</a>
 
+
+</div>
+
+</div>
   <!-- Sección de titulo -->
   <section>
      
-    <!-- table productos-->
-    <div class="container">
-      <div class="card">
-      <h1>Listado de Productos</h1>
-      <li style="list-style: none;">
-        <a class="btn new" href="{%  url 'Productoform' %}">+ Nuevo Producto</a>
-      </li>
-      <div class="row">
-          <table class="table table-light table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Barcode</th>
-                <th scope="col">nombre</th>
-                <th scope="col">precio</th>
-                <th scope="col">categoria</th>
-                <th scope="col">stock</th>
-                <th scope="col" colspan="2">Opciones</th>
-              </tr>
-            </thead>
-              <tbody>
-                {% for ve in productos %}
-                <tr>
-                  <td>{{ve.Barcode}}</td>
-                  <td>{{ve.nombre}}</td>
-                  <td>{{ve.precio}}</td>
-                  <td>{{ve.categoria}}</td>
-                  <td>{{ve.stock}}</td>
-                  <td><a href="{% url 'Mod_Producto' ve.Barcode %}">Modificar</a></td>
-                  <td><a href="{% url 'delete_Producto' ve.Barcode %}">Eliminar</a></td>
-
-                </tr>
-                {% endfor %}
-              </tbody>
-          </table>
-      </div>
-    </div>
-  </div>
-  <!-- table ingredientes-->
-  <div class="container">
-    <div class="card">
-      <h1>Listado de ingredientes</h1>
-      <li style="list-style: none;">
-        <a class="btn new" href="{%  url 'agreIngrediente' %}">+ nuevo ingrediente</a>
-      </li>
-      <div class="row">
-          <table class="table table-light table-striped ">
-            <thead>
-              <tr>
-                <th scope="col">id</th>
-                <th scope="col">nombre</th>
-                <th scope="col">producto asociado</th>
-                <th scope="col">Opciones</th>
-                
-              </tr>
-            </thead>
-              <tbody>
-                {% for ve in ingredientes %}
-                <tr>
-                  <td>{{ve.id}}</td>
-                  <td>{{ve.nombre}}</td>
-                  <td>{{ve.nomProducto}}</td>
-
-                  
-                </tr>
-                {% endfor %}
-              </tbody>
-          </table>
-      </div>
-      </div>
-  </div>
-  <!-- table categorias-->
-  <div class="container">
-    <div class="card">
-      <h1>Listado de categorias</h1>
-      <li style="list-style: none;">
-        <a class="btn new" href="{%  url 'agreCategoria' %}">+ Nueva Categoria</a>
-      </li>
-      <div class="row">
-          <table class="table table-light table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Nombre Categoria</th>
-                <th scope="col">Opciones</th>
-              </tr>
-            </thead>
-              <tbody>
-                {% for ve in categorias %}
-                <tr>
-                  <td>{{ve.nombre}}</td>
-
-                </tr>
-                {% endfor %}
-              </tbody>
-          </table>
-      </div>
-    </div>
-  </div>
+    {% block content %}
+    {% endblock %}
+  
   </section>
 
   <!--CONTENIDO DE PAGINA-->

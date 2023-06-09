@@ -1,0 +1,34 @@
+{% extends 'core/Crud/crud.html' %}
+{% load static %}
+{% block content %}
+
+  
+
+  <!-- table categorias-->
+  <div class="container">
+    <div class="card">
+      <h1>Listado de categorias</h1>
+      <li style="list-style: none;">
+        <a class="btn new" href="{%  url 'agreCategoria' %}">+ Nueva Categoria</a>
+      </li>
+      <div class="row">
+          <table class="table table-light table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Nombre Categoria</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+              <tbody>
+                {% for ve in categorias %}
+                <tr>
+                  <td>{{ve.nombre}}</td>
+
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

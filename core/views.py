@@ -47,13 +47,24 @@ def detalleProducto(request,id):
 
 # Render crud  y trae todos los productos y categorias
 def crud (request):
-    producto  = Producto.objects.all()
-    ingrediente  = Ingrediente.objects.all()
+   
+    return render(request,'core/Crud/crud.html')
+# LISTAS 
+def Lcategorias(request):
     categoria  = Categoria.objects.all() 
-    contex = {'ingredientes' : ingrediente,
-              'productos':producto,
-              'categorias':categoria,}
-    return render(request,'core/Crud/crud.html',contex)
+    context = { 'categorias' : categoria}
+    return render(request,'core/Crud/Listas/Lcategorias.html',context)
+
+def Lproductos(request):
+    producto  = Producto.objects.all()
+    context = { 'productos' : producto}
+    return render(request,'core/Crud/Listas/Lproductos.html',context)
+
+def Lingredientes(request):
+    ingrediente  = Ingrediente.objects.all() 
+    context = { 'ingredientes' : ingrediente}
+    return render(request,'core/Crud/Listas/Lingredientes.html',context)
+
 
 # Agrega un nuevo producto
 def Productoform(request):

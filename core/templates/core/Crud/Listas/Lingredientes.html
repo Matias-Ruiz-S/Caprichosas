@@ -1,0 +1,39 @@
+{% extends 'core/Crud/crud.html' %}
+{% load static %}
+{% block content %}
+
+ <!-- table ingredientes-->
+ <div class="container">
+    <div class="card">
+      <h1>Listado de ingredientes</h1>
+      <li style="list-style: none;">
+        <a class="btn new" href="{%  url 'agreIngrediente' %}">+ nuevo ingrediente</a>
+      </li>
+      <div class="row">
+          <table class="table table-light table-striped ">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">nombre</th>
+                <th scope="col">producto asociado</th>
+                <th scope="col">Opciones</th>
+                
+              </tr>
+            </thead>
+              <tbody>
+                {% for ve in ingredientes %}
+                <tr>
+                  <td>{{ve.id}}</td>
+                  <td>{{ve.nombre}}</td>
+                  <td>{{ve.nomProducto}}</td>
+
+                  
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+      </div>
+      </div>
+  </div>
+
+{% endblock %}

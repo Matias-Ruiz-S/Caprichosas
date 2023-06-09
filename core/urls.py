@@ -13,6 +13,9 @@ urlpatterns = [
     path("terminar/", terminar,name="terminar"),
     #CRUD
     path("crud", crud,name="crud"),
+    path("crud/Listado-categorias",Lcategorias,name="Lcategorias"),
+    path("crud/Listado-productos",Lproductos,name="Lproductos"),
+    path("crud/Listado-ingredientes",Lingredientes,name="Lingredientes"),
     #NUEVO-OBJETO CRUD
     path("agre/<int:producto_id>/", agregar_producto, name="agregar_producto"),
     path("nueva-categoria", agreCategoria,name="agreCategoria"),
