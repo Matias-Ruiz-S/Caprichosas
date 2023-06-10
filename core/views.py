@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from  .carro  import Carro
 from .forms import *
-from .models import Categoria,Producto,Ingrediente
+from .models import CATEGORIA,PRODUCTO,INGREDIENTE
 from transbank.webpay.webpay_plus.transaction import Transaction
 from transbank.error.transbank_error import TransbankError
 
@@ -9,10 +9,10 @@ from transbank.error.transbank_error import TransbankError
 # INDEX funciones
 #Muestra la pagina principal
 def home(request):  
-    cat = Categoria.objects.exclude(nombre = 'Arma Tu') # TODAS las categorias menos Arma tu
-    catArma = Categoria.objects.get(nombre = 'Arma Tu') # trae solo cat armatu
-    producto  = Producto.objects.filter(is_activo=True)
-    productoArma  = Producto.objects.filter(is_activo=True,categoria=catArma)
+    cat = CATEGORIA.objects.exclude(nombre = 'Arma Tu') # TODAS las categorias menos Arma tu
+    catArma = CATEGORIA.objects.get(nombre = 'Arma Tu') # trae solo cat armatu
+    producto  = PRODUCTO.objects.filter(is_activo=True)
+    productoArma  = PRODUCTO.objects.filter(is_activo=True,categoria=catArma)
     contex = {'productos':producto,
               'categorias':cat,
               'Arma':catArma,
@@ -21,11 +21,11 @@ def home(request):
 
 # Muestra los productos filtrados por categorias
 def listar(request,slug):  
-    cat  = Categoria.objects.get(slug=slug) 
-    catArma = Categoria.objects.get(nombre = 'Arma Tu') # trae solo cat armatu 
-    productoArma  = Producto.objects.filter(is_activo=True,categoria=catArma)
-    categorias = Categoria.objects.exclude(nombre = 'Arma Tu') # TODAS las categorias menos Arma tu
-    producto  = Producto.objects.filter(is_activo=True,categoria=cat)
+    cat  = CATEGORIA.objects.get(slug=slug) 
+    catArma = CATEGORIA.objects.get(nombre = 'Arma Tu') # trae solo cat armatu 
+    productoArma  = PRODUCTO.objects.filter(is_activo=True,categoria=catArma)
+    categorias = CATEGORIA.objects.exclude(nombre = 'Arma Tu') # TODAS las categorias menos Arma tu
+    producto  = PRODUCTO.objects.filter(is_activo=True,categoria=cat)
     contex = {'productos':producto,'categorias':categorias, 'Arma':catArma,
               'armalist':productoArma}
     return render(request, 'core/Web/list.html',contex)
@@ -36,7 +36,7 @@ def template(request):
 
 
 def detalleProducto(request,id): 
-    producto  = Producto.objects.filter(is_activo=True,Barcode=id)
+    producto  = PRODUCTO.objects.filter(is_activo=True,Barcode=id)
     contex = {'detalle': producto}   
 
     return render(request, 'core/detalle.html',contex)
@@ -51,17 +51,17 @@ def crud (request):
     return render(request,'core/Crud/crud.html')
 # LISTAS 
 def Lcategorias(request):
-    categoria  = Categoria.objects.all() 
+    categoria  = CATEGORIA.objects.all() 
     context = { 'categorias' : categoria}
     return render(request,'core/Crud/Listas/Lcategorias.html',context)
 
 def Lproductos(request):
-    producto  = Producto.objects.all()
+    producto  = PRODUCTO.objects.all()
     context = { 'productos' : producto}
     return render(request,'core/Crud/Listas/Lproductos.html',context)
 
 def Lingredientes(request):
-    ingrediente  = Ingrediente.objects.all() 
+    ingrediente  = INGREDIENTE.objects.all() 
     context = { 'ingredientes' : ingrediente}
     return render(request,'core/Crud/Listas/Lingredientes.html',context)
 
@@ -101,7 +101,7 @@ def agreIngrediente (request):
 # CRUD funciones modificar
 
 def Mod_Producto(request, Barcode):
-    producto = Producto.objects.get(Barcode=Barcode)
+    producto = PRODUCTO.objects.get(Barcode=Barcode)
     datos = {
         'form': ProductoForm(instance=producto)
     }
@@ -117,17 +117,17 @@ def Mod_Producto(request, Barcode):
 # CRUD funciones delete
 
 def delete_Producto(request,id):
-    producto = Producto.objects.get(Barcode=id)
+    producto = PRODUCTO.objects.get(Barcode=id)
     producto.delete()
     return redirect(to="crud")
 
 def delete_ingrediente(id):
-    producto = Ingrediente.objects.get(SKU=id)
+    producto = INGREDIENTE.objects.get(SKU=id)
     producto.delete()
     return redirect(to="crud")
 
 def delete_categoria(slug):
-    producto = Categoria.objects.get(slug=slug)
+    producto = CATEGORIA.objects.get(slug=slug)
     producto.delete()
     return redirect(to="crud")
 
@@ -146,13 +146,13 @@ def asigIngre(request):
 
 def agregar_producto(request, producto_id):
     carro=Carro(request)
-    producto= Producto.objects.get(Barcode=producto_id)
+    producto= PRODUCTO.objects.get(Barcode=producto_id)
     carro.agregar(producto)
     return redirect("home")
 
 def eliminar_producto(request, producto_id):
     carro=Carro(request)
-    producto=Producto.objects.get(id=producto_id)
+    producto=PRODUCTO.objects.get(id=producto_id)
     carro.eliminar(producto)
     return redirect("home")
 
@@ -163,7 +163,7 @@ def limpiar_carro(request, producto_id):
 
 def restar(request, producto_id):
     carro=Carro(request)
-    producto= Producto.objects.get(Barcode=producto_id)
+    producto= PRODUCTO.objects.get(Barcode=producto_id)
     carro.restar_producto(producto)
     return redirect("home")
 

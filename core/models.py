@@ -4,7 +4,7 @@ from autoslug import AutoSlugField
 # Create your models here.
 
 
-class Categoria(models.Model):
+class CATEGORIA(models.Model):
     nombre = models.CharField(max_length=50,primary_key=True, verbose_name='nombre de la categoria')
     slug = AutoSlugField(populate_from='nombre')
     is_activo = models.BooleanField(default=True)
@@ -18,17 +18,17 @@ class Categoria(models.Model):
             if self.is_activo == False:
                 self.is_activo == True
 
-class Producto(models.Model):
-    Barcode = models.CharField(max_length=6 ,primary_key=True ,verbose_name='Barcode')      
+class PRODUCTO(models.Model):
+    Barcode = models.CharField(max_length=50 ,primary_key=True ,verbose_name='Barcode')      
     nombre =  models.CharField(max_length=50 ,verbose_name='nombre')  
     slug = AutoSlugField(populate_from='nombre')    
     precio = models.IntegerField(verbose_name='precio')
     stock = models.IntegerField(verbose_name='stock')
     imgurl = models.CharField(max_length=600,verbose_name='url_img')
-    descripcion = models.TextField(max_length=600,verbose_name='descripcion')
+    descripcion = models.TextField(max_length=600,verbose_name='descripcion',null=True)
     is_activo = models.BooleanField(default=True)
     destacado = models.BooleanField(default=False)
-    categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
+    categoria = models.ForeignKey(CATEGORIA,on_delete=models.CASCADE)
     
     def __str__(self) -> str:
         return self.nombre   
@@ -41,8 +41,13 @@ class Producto(models.Model):
                 self.is_activo == True
 
     
+class HISTORICO(models.Model):
+    producto = models.ForeignKey(PRODUCTO,on_delete=models.CASCADE)
+    cantidad = models.IntegerField()
+    total = models.IntegerField()
+    fecha= models.DateTimeField(auto_now_add=True)
 
-class Ingrediente(models.Model):
+class INGREDIENTE(models.Model):
     nombre = models.CharField(max_length=50,primary_key=True, verbose_name='nombre')
     slug = AutoSlugField(populate_from='nombre')  
     stock = models.IntegerField(verbose_name='stock')
@@ -50,37 +55,46 @@ class Ingrediente(models.Model):
     def __str__(self) -> str:
         return self.nombre
 
-class asigIngrediente(models.Model):
-    producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
-    Ingrediente = models.ForeignKey(Ingrediente,on_delete=models.CASCADE)
+class INGREDIENTE_PRODUCTO(models.Model):
+    union = models.CharField(max_length=100,primary_key=True)
+    producto = models.ForeignKey(PRODUCTO,on_delete=models.CASCADE)
+    Ingrediente = models.ForeignKey(INGREDIENTE,on_delete=models.CASCADE)
     def __str__(self) -> str:
         return self.producto, self.Ingrediente
 
+class TIPO_PAGO(models.Model):
+    id = models.CharField(max_length=6 ,primary_key=True ,verbose_name='Barcode')      
+    nombre =  models.CharField(max_length=50 ,verbose_name='nombre')     
 
-
-class tipoPago(models.Model):
+class TIPO_DESPACHO(models.Model):
     id = models.CharField(max_length=6 ,primary_key=True ,verbose_name='Barcode')      
     Tnombre =  models.CharField(max_length=50 ,verbose_name='nombre')     
 
-class Cliente(models.Model):     
-    nombre =  models.CharField(max_length=50 ,primary_key=True,verbose_name='nombre')     
-    ubicacion =  models.CharField(max_length=50 ,verbose_name='ubicacion')     
- 
 
-class OrdenPedido(models.Model):     
+class STATUS(models.Model):
+    id = models.IntegerField(primary_key=True ,verbose_name='id_status')      
+    tipo_estado =  models.CharField(max_length=50 ,verbose_name='nombre')     
+
+
+class ORDEN_PEDIDO(models.Model):     
     id =  models.IntegerField(primary_key=True,verbose_name='id')
-    fecha =  models.CharField(max_length=50 ,verbose_name='apellido')
-    nomCliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)    
-    tipoPago = models.ForeignKey(tipoPago,on_delete=models.CASCADE)
+    fecha = models.DateTimeField(auto_now_add=True)
+    nombre_cliente = models.CharField(max_length=100) 
+    ubicacion = models.CharField(max_length=100)
+    tipo_pago =  models.ForeignKey(TIPO_PAGO,on_delete=models.CASCADE)
+    tipo_despacho = models.ForeignKey(TIPO_DESPACHO,on_delete=models.CASCADE)
+    status = models.ForeignKey(STATUS,on_delete=models.CASCADE)
 
 
-class ListaOrdenPedido(models.Model):
-    id_orden = models.ForeignKey(OrdenPedido,on_delete=models.CASCADE)
-    id_producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
+class PRODUCTO_ORDEN(models.Model):
+    id_orden = models.ForeignKey(ORDEN_PEDIDO,on_delete=models.CASCADE)
+    id_producto = models.ForeignKey(PRODUCTO,on_delete=models.CASCADE)
 
 
-class Boleta(models.Model):     
+class BOLETA(models.Model):     
     id =  models.IntegerField(primary_key=True,verbose_name='id')
-    id_orden = models.ForeignKey(OrdenPedido,on_delete=models.CASCADE)
-    fecha =  models.CharField(max_length=50 ,verbose_name='fecha')     
+    cliente = models.CharField(max_length=100) 
+    fecha = models.DateTimeField(auto_now_add=True)
     descripcion =  models.CharField(max_length=150 ,verbose_name='descripcion')
+    num_order = models.ForeignKey(ORDEN_PEDIDO,on_delete=models.CASCADE)     
+    total = models.IntegerField()
