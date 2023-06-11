@@ -1,7 +1,7 @@
 <table class="text-uppercase container py-5 table table-bordered  text-center">
     <thead>
         <tr>
-            <th colspan="3" class="text-center">
+            <th colspan="4" class="text-center vertiky">
                 Carro de Compras
             </th>
         </tr>
@@ -9,6 +9,7 @@
             <th>Producto</th>
             <th>Cantidad</th>
             <th>Suma</th>
+            <th><i class="fa-solid fa-trash-can"></i></th>
         </tr>
     </thead>
     <tbody>
@@ -24,11 +25,15 @@
                 <a href="{% url 'restar' value.producto_id  %}"
                     class="btn btn-sm btn-danger ">-</a>
             </td>
+            <td class="align-item-center">
+                <a href="{% url 'limpiar' value.producto_id %}"
+                    class="btn btn-sm btn-outline-danger "><i class="fa-solid fa-trash-can"></i></a>
+            </td>
         </tr>
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">
+            <td colspan="4">
                 <div class="alert alert-danger">
                     Sin productos
                 </div>
@@ -38,9 +43,13 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3">
+            <td colspan="4">
                 Total: ${{importe_total_carro}}
-                <a class="nav-link" href="{% url 'pagar' total=importe_total_carro  %}"><button class="btn btn-primary">pagar</button></a>
+                <a class="nav-link" href="{% url 'pagar' total=importe_total_carro  %}">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary">pagar</button>
+                </div>
+                </a>
             </td>
         </tr>
 

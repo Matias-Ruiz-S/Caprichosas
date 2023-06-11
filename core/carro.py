@@ -44,6 +44,11 @@ class Carro:
             if self.carro[id]["cantidad"] <= 0 :self.eliminar(producto)
             self.guardar_carro()
 
+    # def eliminar_producto(self,producto):
+    #     id = str(producto.Barcode)
+    #     if id in self.carro.keys():
+    #         self.eliminar(producto)
+    #         self.guardar_carro()
 
     def limpiar_carro(self):
         self.session["carro"]={}
