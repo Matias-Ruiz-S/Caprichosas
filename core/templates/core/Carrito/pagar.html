@@ -47,40 +47,63 @@
 
 
 
-<section>
-<div class="container">
-    <div class="card">
+  <section>
+    <div class="container">
+      <div class="card">
         <div class="card-body">
           <h3 class="card-title text-center vertiky">Productos que va a comprar</h3>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for key, value in request.session.carro.items %}
-              <tr>
-                <td>{{ value.nombre }}</td>
-                <td>{{ value.cantidad }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
           <div class="container">
             <form action="{{ response.url }}" method="POST">{% csrf_token %}
-              <input type="hidden" name="token_ws" value="{{ response.token }}">
-              <input type="hidden" name="username" value="{{ request.user.username }}">
+              <!-- ... -->
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="deliveryOption" id="delivery" value="delivery" checked>
+                <label class="form-check-label" for="delivery">
+                  Envío
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="deliveryOption" id="pickup" value="pickup">
+                <label class="form-check-label" for="pickup">
+                  Retiro en tienda
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentOption" id="cash" value="cash" checked>
+                <label class="form-check-label" for="cash">
+                  Pago en efectivo
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentOption" id="internet" value="internet">
+                <label class="form-check-label" for="internet">
+                  Pago en debito
+                </label>
+              </div>
               <h3 class="mt-4">Total: ${{ total }}</h3>
               <h3></h3>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for key, value in request.session.carro.items %}
+                  <tr>
+                    <td>{{ value.nombre }}</td>
+                    <td>{{ value.cantidad }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
               <input type="submit" class="btn btn-primary mt-2" value="Pagar">
             </form>
           </div>
         </div>
       </div>
     </div>
-</section>
+  </section>
 
 <br>
 <br>
@@ -88,7 +111,21 @@
 
 </body>
 
+<script>
+  document.getElementById('delivery').addEventListener('change', function() {
+    document.getElementById('cash').disabled = this.checked;
+    if (this.checked) {
+      document.getElementById('internet').checked = true;
+    }
+  });
 
+  document.getElementById('pickup').addEventListener('change', function() {
+    document.getElementById('cash').disabled = !this.checked;
+    if (this.checked) {
+      document.getElementById('cash').checked = true;
+    }
+  });
+</script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
 

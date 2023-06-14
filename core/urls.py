@@ -5,7 +5,7 @@ from .views import *
 
 urlpatterns = [
     #WEB
-    path("", home,name="home"),
+    path("", home, name="home"),
     path("lista/<slug>", listar,name="listar"),
     path("detalle/<id>", detalleProducto,name="detalleProducto"),
     path('agre-producto/<id>',delete_Producto, name="delete_Producto"),
