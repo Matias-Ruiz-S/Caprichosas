@@ -4,7 +4,7 @@ from .forms import *
 from .models import CATEGORIA,PRODUCTO,INGREDIENTE
 from transbank.webpay.webpay_plus.transaction import Transaction
 from transbank.error.transbank_error import TransbankError
-
+from django.core.paginator import Paginator
 
 # INDEX funciones
 #Muestra la pagina principal
@@ -56,14 +56,24 @@ def Lcategorias(request):
     return render(request,'core/Crud/Listas/Lcategorias.html',context)
 
 def Lproductos(request):
-    producto  = PRODUCTO.objects.all()
-    context = { 'productos' : producto}
-    return render(request,'core/Crud/Listas/Lproductos.html',context)
+    productos = PRODUCTO.objects.all()
+    paginator = Paginator(productos, 15)  # 15 productos por página
+
+    page_number = request.GET.get('page')
+    productos = paginator.get_page(page_number)
+
+    context = {'productos': productos}
+    return render(request, 'core/Crud/Listas/Lproductos.html', context)
 
 def Lingredientes(request):
-    ingrediente  = INGREDIENTE.objects.all() 
-    context = { 'ingredientes' : ingrediente}
-    return render(request,'core/Crud/Listas/Lingredientes.html',context)
+    ingredientes = INGREDIENTE.objects.all()
+    paginator = Paginator(ingredientes, 10)  # 15 ingredientes por página
+
+    page_number = request.GET.get('page')
+    ingredientes = paginator.get_page(page_number)
+
+    context = {'ingredientes': ingredientes}
+    return render(request, 'core/Crud/Listas/Lingredientes.html', context)
 
 
 # Agrega un nuevo producto

@@ -29,6 +29,5 @@ urlpatterns = [
     #Carrito
     path("restar/<int:producto_id>/", restar, name="restar"),
     path("limpiar/<id>/", limpiar_carro, name="limpiar"),
-
 ]
 

@@ -2,38 +2,71 @@
 {% load static %}
 {% block content %}
 
- <!-- table ingredientes-->
- <div class="container">
-    <div class="card">
-      <h1>Listado de ingredientes</h1>
-      <li style="list-style: none;">
-        <a class="btn new" href="{%  url 'agreIngrediente' %}">+ nuevo ingrediente</a>
-      </li>
-      <div class="row">
-          <table class="table table-light table-striped ">
-            <thead>
-              <tr>
-                <th scope="col">id</th>
-                <th scope="col">nombre</th>
-                <th scope="col">producto asociado</th>
-                <th scope="col">Opciones</th>
-                
-              </tr>
-            </thead>
-              <tbody>
-                {% for ve in ingredientes %}
-                <tr>
-                  <td>{{ve.id}}</td>
-                  <td>{{ve.nombre}}</td>
-                  <td>{{ve.nomProducto}}</td>
+<!-- table ingredientes-->
+<div class="container">
+  <div class="card">
+    <h1>Listado de ingredientes</h1>
+    <li style="list-style: none;">
+      <a class="btn new" href="{% url 'agreIngrediente' %}">+ nuevo ingrediente</a>
+    </li>
+    <div class="row">
+      <table class="table table-light table-striped">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">nombre</th>
+            <th scope="col">producto asociado</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ve in ingredientes %}
+          <tr>
+            <td>{{ ve.id }}</td>
+            <td>{{ ve.nombre }}</td>
+            <td>{{ ve.nomProducto }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- Paginator -->
+    <div class="card-footer d-flex justify-content-center">
+      <nav aria-label="Ingredientes Pagination">
+        <ul class="pagination">
+          {% if ingredientes.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="First">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">First</span>
+            </a>
+          </li>
+          {% endif %}
 
-                  
-                </tr>
-                {% endfor %}
-              </tbody>
-          </table>
-      </div>
-      </div>
+          {% for num in ingredientes.paginator.page_range %}
+          {% if ingredientes.number == num %}
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+          </li>
+          {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+
+          {% if ingredientes.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ ingredientes.paginator.num_pages }}" aria-label="Last">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Last</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
   </div>
+</div>
 
 {% endblock %}

@@ -2,45 +2,72 @@
 {% load static %}
 {% block content %}
 
-
- <!-- table productos-->
- <div class="container">
-    <div class="card">
+<div class="container">
+  <div class="card">
     <h1>Listado de Productos</h1>
     <li style="list-style: none;">
-      <a class="btn new" href="{%  url 'Productoform' %}">+ Nuevo Producto</a>
+      <a class="btn new" href="{% url 'Productoform' %}">+ Nuevo Producto</a>
     </li>
     <div class="row">
-        <table class="table table-light table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Barcode</th>
-              <th scope="col">nombre</th>
-              <th scope="col">precio</th>
-              <th scope="col">categoria</th>
-              <th scope="col">stock</th>
-              <th scope="col" colspan="2">Opciones</th>
-            </tr>
-          </thead>
-            <tbody>
-              {% for ve in productos %}
-              <tr>
-                <td>{{ve.Barcode}}</td>
-                <td>{{ve.nombre}}</td>
-                <td>{{ve.precio}}</td>
-                <td>{{ve.categoria}}</td>
-                <td>{{ve.stock}}</td>
-                <td><a href="{% url 'Mod_Producto' ve.Barcode %}">Modificar</a></td>
-                <td><a href="{% url 'delete_Producto' ve.Barcode %}">Eliminar</a></td>
-
-              </tr>
-              {% endfor %}
-            </tbody>
-        </table>
+      <table class="table table-light table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Barcode</th>
+            <th scope="col">nombre</th>
+            <th scope="col">precio</th>
+            <th scope="col">categoria</th>
+            <th scope="col">stock</th>
+            <th scope="col" colspan="2">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ve in productos %}
+          <tr>
+            <td>{{ve.Barcode}}</td>
+            <td>{{ve.nombre}}</td>
+            <td>{{ve.precio}}</td>
+            <td>{{ve.categoria}}</td>
+            <td>{{ve.stock}}</td>
+            <td><a href="{% url 'Mod_Producto' ve.Barcode %}">Modificar</a></td>
+            <td><a href="{% url 'delete_Producto' ve.Barcode %}">Eliminar</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+    <!-- Paginador -->
+    <div class="row">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if productos.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ productos.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          {% endif %}
+          
+          {% for page in productos.paginator.page_range %}
+          {% if productos.number == page %}
+          <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+          {% endif %}
+          {% endfor %}
+          
+          {% if productos.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ productos.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+    <!-- Fin del paginador -->
   </div>
 </div>
-
-
-
 {% endblock %}
