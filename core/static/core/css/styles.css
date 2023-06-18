@@ -324,3 +324,50 @@ body {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
+.containercrud {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.custom-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 25px;
+  padding-right: 30px;
+
+  background-color: #D066C0;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+
+.custom-btn:hover {
+  background-color: #b439a4;
+  color: #ffffff;
+}
+
+
+.crud {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.crud .containercrud {
+  flex-grow: 1;
+  padding-top: 50px; /* Ajusta el valor según tu preferencia */
+}
+
+.crud .footer {
+  padding: 20px 0;
+  text-align: center;
+}
