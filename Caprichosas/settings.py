@@ -75,15 +75,7 @@ WSGI_APPLICATION = 'Caprichosas.wsgi.application'
 
 
 
-DATABASES={
-    'default':
-    {
-    'ENGINE':'django.db.backends.oracle',   
-    'NAME':'s9yrjtfhkh8bvf27_high ', # proveer nombre servicio, los cuales se almacenan en tlsnames
-    'USER':'ADMIN',  #proveer nombre de la base de datos
-    'PASSWORD':'Caprichosas.123',# proveer contraseña de la base de datos
-    }
-}
+
 
 DATABASES = {
     'default': {
