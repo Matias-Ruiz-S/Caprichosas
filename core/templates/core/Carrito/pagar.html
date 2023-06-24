@@ -53,32 +53,58 @@
         <div class="card-body">
           <h3 class="card-title text-center vertiky">Productos que va a comprar</h3>
           <div class="container">
-            <form action="{{ response.url }}" method="POST">{% csrf_token %}
+            <form action="{% url 'agregar_boleta' %}" method="POST">{% csrf_token %}
               <!-- ... -->
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="deliveryOption" id="delivery" value="delivery" checked>
-                <label class="form-check-label" for="delivery">
-                  Envío
-                </label>
+              <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="cliente" id="cliente" class="form-control" required>
+                <br>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="deliveryOption" id="pickup" value="pickup">
-                <label class="form-check-label" for="pickup">
-                  Retiro en tienda
-                </label>
+              
+              <input type="hidden" name="total" value="{{ total }}">
+
+              <input type="hidden" name="num_order" value="2">
+
+              <div class="form-group">
+                <label for="ubicacion">Ubicación:</label>
+                <input type="text" name="ubicacion" id="ubicacion" class="form-control" required>
+                <br>
               </div>
+
+              {% for i in tipo_despacho %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipo_despacho" id="delivery" value='{{ i.id }}' checked>
+                    <label class="form-check-label" for="delivery">
+                        {{ i.Tnombre }}
+                    </label>
+                </div>
+              {% endfor %}
+
+              <br>
+              
+              {% for i in tipo_pago%}
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentOption" id="cash" value="cash" checked>
+                <input class="form-check-input" type="radio" name="tipo_pago" id="tipo_pago" value='{{ i.id }}' checked>
                 <label class="form-check-label" for="cash">
-                  Pago en efectivo
+                  {{i.nombre}}
                 </label>
               </div>
+              {% endfor %}
+
+              <br>
+
+              <h5>Estado</h5>
+              {% for i in status%}
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentOption" id="internet" value="internet">
-                <label class="form-check-label" for="internet">
-                  Pago en debito
+                <input class="form-check-input" type="radio" name="status" id="status" value='{{ i.id }}' checked>
+                <label class="form-check-label" for="cash">
+                  {{i.tipo_estado}}
                 </label>
               </div>
+              {% endfor %}
+
+              <br>
+             
               <h3 class="mt-4">Total: ${{ total }}</h3>
               <h3></h3>
               <table class="table">
@@ -97,6 +123,14 @@
                   {% endfor %}
                 </tbody>
               </table>
+
+              <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" name="descripcion" id="descripcion" class="form-control" required>
+                  <br>
+              </div>
+            
+
               <input type="submit" class="btn btn-primary mt-2" value="Pagar">
             </form>
           </div>
@@ -126,6 +160,27 @@
     }
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const formulario = document.getElementById('formulario');
+    formulario.addEventListener('submit', function(event) {
+      event.preventDefault(); // Evitar el envío del formulario
+      fetch(formulario.action, {
+        method: 'POST',
+        body: new FormData(formulario),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.mensaje);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  });
+</script>
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
 

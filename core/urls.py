@@ -11,6 +11,7 @@ urlpatterns = [
     path('agre-producto/<id>',delete_Producto, name="delete_Producto"),
     path("pagar/<int:total>/", pagar,name="pagar"),
     path("terminar/", terminar,name="terminar"),
+    path('agregar_boleta/', agregar_boleta, name='agregar_boleta'),
     #CRUD
     path("crud", crud,name="crud"),
     path("crud/Listado-categorias",Lcategorias,name="Lcategorias"),

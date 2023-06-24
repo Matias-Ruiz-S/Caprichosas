@@ -6,8 +6,11 @@ admin.site.register(CATEGORIA)
 admin.site.register(PRODUCTO)
 admin.site.register(INGREDIENTE)
 admin.site.register(TIPO_PAGO)
+admin.site.register(TIPO_DESPACHO)
 admin.site.register(ORDEN_PEDIDO)
 admin.site.register(PRODUCTO_ORDEN)
+admin.site.register(BOLETA)
+admin.site.register(STATUS)
 
 
 
