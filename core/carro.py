@@ -14,6 +14,7 @@ class Carro:
             self.carro[id]={
                 "producto_id" :producto.Barcode,
                 "nombre" : producto.nombre,
+                "c/u" : producto.precio,
                 "acumulado" : producto.precio,
                 "cantidad": 1,
 

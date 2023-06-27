@@ -15,6 +15,8 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
   <!-- MDB -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+
+  <script src="{% static 'js/carrito.js' %}"></script>
 </head>
 
 <body>
@@ -48,11 +50,20 @@
                 data-mdb-toggle="dropdown"
                 aria-expanded="false"
               >
-              <i class="fas fa-cart-shopping"></i>
+                 
+            <div id="cart" class="cart-icon">
+              <a href="#"> <img src="{% static 'core/img/carrito.png' %}" alt="Carrito" oncontextmenu="return false;"></a>
+              <div id="cart-quantity">{{ cart_count }}</div>
+          </div>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {%include "core/widget.html"%}
             </ul>
+            <ul>
+
+          
+            </ul>
+
           </div>
             </li>
           </ul>

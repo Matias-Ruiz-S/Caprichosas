@@ -8,7 +8,8 @@
         <tr>
             <th>Producto</th>
             <th>Cantidad</th>
-            <th>Suma</th>
+            <th></th>
+            <th>Total</th>
             <th><i class="fa-solid fa-trash-can"></i></th>
         </tr>
     </thead>
@@ -18,17 +19,22 @@
         <tr>
             <td>{{value.nombre}}</td>
             <td>{{value.cantidad}}</td>
+          
             <td class="align-item-center">
                 <a href="{% url 'agregar_producto' value.producto_id %}"
                     class="btn btn-sm btn-success ">+</a>
-                ${{value.precio}}
+               <hr>
                 <a href="{% url 'restar' value.producto_id  %}"
                     class="btn btn-sm btn-danger ">-</a>
             </td>
+
+            <td>  ${{value.acumulado}}</td>
             <td class="align-item-center">
-                <a href="{% url 'limpiar' value.producto_id %}"
+                <a href="{% url 'eliminar' value.producto_id %}"
                     class="btn btn-sm btn-outline-danger "><i class="fa-solid fa-trash-can"></i></a>
             </td>
+           
+         
         </tr>
         {% endfor %}
         {% else %}

@@ -198,6 +198,7 @@ def agregar_producto(request,producto_id):
     a = request.path
     print(a)
     carro.agregar(producto)
+    print(carro)
     
     return redirect('listar' , producto.categoria.slug)
 
@@ -205,7 +206,7 @@ def agregar_producto(request,producto_id):
 
 def eliminar_producto(request, producto_id):
     carro=Carro(request)
-    producto=PRODUCTO.objects.get(id=producto_id)
+    producto=PRODUCTO.objects.get(Barcode=producto_id)
     carro.eliminar(producto)
     return redirect('listar' , producto.categoria.slug)
 

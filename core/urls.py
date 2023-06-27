@@ -24,11 +24,10 @@ urlpatterns = [
     path("asignar-ingredientes", asigIngre,name="asigIngre"),
     #MODIFICAR PRODUCTOS 
     path("Modificar-producto/<Barcode>", Mod_Producto,name="Mod_Producto"),
-    #ELIMINAR OBJETO CRUD
-    path("eliminar/<id>/", eliminar_producto, name="eliminar"),
     #Carrito
     path("agre/<int:producto_id>", agregar_producto, name="agregar_producto"),
     path("restar/<int:producto_id>/", restar, name="restar"),
-    path("limpiar/<id>/", limpiar_carro, name="limpiar"),
+    path("limpiar/<int:producto_id>/", limpiar_carro, name="limpiar"),
+    path("eliminar/<int:producto_id>/", eliminar_producto, name="eliminar"),
 ]
 
