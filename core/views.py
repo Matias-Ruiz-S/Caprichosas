@@ -5,6 +5,7 @@ from .models import CATEGORIA,PRODUCTO,INGREDIENTE, BOLETA, ORDEN_PEDIDO, TIPO_P
 from transbank.webpay.webpay_plus.transaction import Transaction
 from transbank.error.transbank_error import TransbankError
 from django.core.paginator import Paginator
+from datetime import datetime
 
 
 # INDEX funciones
@@ -18,7 +19,7 @@ def home(request):
               'categorias': cat,
               'Arma': catArma,
               'armalist': productoArma}
-    return render(request, 'core/Web/index.html', contex)
+    return render(request, 'core/Web/list.html', contex)
 
 # Muestra los productos filtrados por categorias
 def listar(request,slug):  
@@ -45,10 +46,6 @@ def detalleProducto(request,id):
 
 # CRUD funciones
 
-# Render crud  y trae todos los productos y categorias
-def crud (request):
-   
-    return render(request,'core/Crud/crud.html')
 # LISTAS 
 def Lcategorias(request):
     categoria  = CATEGORIA.objects.all() 
@@ -76,7 +73,7 @@ def Lingredientes(request):
     return render(request, 'core/Crud/Listas/Lingredientes.html', context)
 
 
-from datetime import datetime
+
 
 def agregar_boleta(request):
     datos = {'form': BoletaForm()}
@@ -122,7 +119,7 @@ def Productoform(request):
         if formulario.is_valid:
             formulario.save()
             datos['mensaje'] = "Datos guardados correctamente"
-            
+            return redirect('Lproductos')
     return render(request, 'core/Crud/agregarProducto.html', datos)
 
 # Agrega una nueva categoria
@@ -133,7 +130,7 @@ def agreCategoria (request):
         if formulario.is_valid:
             formulario.save()
             datos['mensaje'] = "Datos guardados correctamente"
-            return redirect('crud')
+            return redirect('Lcategorias')
     return render(request,'core/Crud/agreCategoria.html',datos)
 
 # Agrega un nuevo ingrediente
@@ -144,6 +141,7 @@ def agreIngrediente (request):
         if formulario.is_valid:
             formulario.save()
             datos['mensaje'] = "Datos guardados correctamente"
+        return redirect('Lingredientes')
     return render(request,'core/Crud/agreIngrediente.html',datos)
 
 # CRUD funciones modificar
@@ -172,12 +170,14 @@ def delete_Producto(request,id):
 def delete_ingrediente(id):
     producto = INGREDIENTE.objects.get(SKU=id)
     producto.delete()
-    return redirect(to="crud")
+    return redirect(to="crud") 
+   
 
 def delete_categoria(slug):
     producto = CATEGORIA.objects.get(slug=slug)
     producto.delete()
     return redirect(to="crud")
+
 
 def asigIngre(request):
     datos = {'form': AsignarIngreForm}
@@ -191,29 +191,35 @@ def asigIngre(request):
 
 
 # carroo
-
-def agregar_producto(request, producto_id):
+ 
+def agregar_producto(request,producto_id):
     carro=Carro(request)
     producto= PRODUCTO.objects.get(Barcode=producto_id)
+    a = request.path
+    print(a)
     carro.agregar(producto)
-    return redirect("home")
+    
+    return redirect('listar' , producto.categoria.slug)
+
+
 
 def eliminar_producto(request, producto_id):
     carro=Carro(request)
     producto=PRODUCTO.objects.get(id=producto_id)
     carro.eliminar(producto)
-    return redirect("home")
+    return redirect('listar' , producto.categoria.slug)
 
 def limpiar_carro(request, producto_id):
     carro=Carro(request)
     carro.limpiar_carro()
-    return redirect("home")
+    producto= PRODUCTO.objects.get(Barcode=producto_id)
+    return redirect('listar' , producto.categoria.slug)
 
 def restar(request, producto_id):
     carro=Carro(request)
     producto= PRODUCTO.objects.get(Barcode=producto_id)
     carro.restar_producto(producto)
-    return redirect("home")
+    return redirect('listar' , producto.categoria.slug)
 
 
 def pagar(request,total):

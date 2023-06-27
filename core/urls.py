@@ -13,12 +13,11 @@ urlpatterns = [
     path("terminar/", terminar,name="terminar"),
     path('agregar_boleta/', agregar_boleta, name='agregar_boleta'),
     #CRUD
-    path("crud", crud,name="crud"),
+    path("crud", Lcategorias,name="crud"),
     path("crud/Listado-categorias",Lcategorias,name="Lcategorias"),
     path("crud/Listado-productos",Lproductos,name="Lproductos"),
     path("crud/Listado-ingredientes",Lingredientes,name="Lingredientes"),
     #NUEVO-OBJETO CRUD
-    path("agre/<int:producto_id>/", agregar_producto, name="agregar_producto"),
     path("nueva-categoria", agreCategoria,name="agreCategoria"),
     path("nuevo-ingrediente", agreIngrediente,name="agreIngrediente"),
     path("nuevo-producto", Productoform,name="Productoform"),
@@ -28,6 +27,7 @@ urlpatterns = [
     #ELIMINAR OBJETO CRUD
     path("eliminar/<id>/", eliminar_producto, name="eliminar"),
     #Carrito
+    path("agre/<int:producto_id>", agregar_producto, name="agregar_producto"),
     path("restar/<int:producto_id>/", restar, name="restar"),
     path("limpiar/<id>/", limpiar_carro, name="limpiar"),
 ]
