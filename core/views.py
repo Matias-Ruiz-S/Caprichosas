@@ -23,11 +23,14 @@ def home(request):
 
 # Muestra los productos filtrados por categorias
 def listar(request,slug):  
-    cat  = CATEGORIA.objects.get(slug=slug) 
+  
+    categorias = CATEGORIA.objects.exclude(nombre = 'Arma Tu') # TODAS las categorias menos Arma tu 
     catArma = CATEGORIA.objects.get(nombre = 'Arma Tu') # trae solo cat armatu 
     productoArma  = PRODUCTO.objects.filter(is_activo=True,categoria=catArma)
-    categorias = CATEGORIA.objects.exclude(nombre = 'Arma Tu') # TODAS las categorias menos Arma tu
+    #filtra los productos en la categoria
+    cat  = CATEGORIA.objects.get(slug=slug)
     producto  = PRODUCTO.objects.filter(is_activo=True,categoria=cat)
+    
     contex = {'productos':producto,'categorias':categorias, 'Arma':catArma,
               'armalist':productoArma}
     
