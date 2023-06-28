@@ -7,7 +7,7 @@
 {% for i in productos%}
     <div class="col-md-4 mb-4">
   <div class="card">
-    <img class="card-img-top" src="{{i.imgurl}}" alt="Card image cap">
+    <img class="card-img-top" src="{{i.imgurl}}" alt="{{i.nombre}}">
     <div class="card-body">
       <h5 class="card-title">{{i.nombre}}</h5>
       <p class="card-text"> <strong>Precio:</strong> ${{i.precio}} <br> <strong>Disponibles:</strong> {{i.stock}}</p>

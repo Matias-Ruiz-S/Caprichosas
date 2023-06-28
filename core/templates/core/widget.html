@@ -1,14 +1,15 @@
 <table class="text-uppercase container py-5 table table-bordered  text-center">
     <thead>
         <tr>
-            <th colspan="4" class="text-center vertiky">
+            <th colspan="5" class="text-center vertiky">
                 Carro de Compras
             </th>
         </tr>
         <tr>
             <th>Producto</th>
-            <th>Cantidad</th>
-            <th></th>
+            <th colspan="2">
+                Cantidad
+            </th>
             <th>Total</th>
             <th><i class="fa-solid fa-trash-can"></i></th>
         </tr>
@@ -17,8 +18,8 @@
         {% if request.session.carro.items %}
         {% for key, value in request.session.carro.items %}
         <tr>
-            <td>{{value.nombre}}</td>
-            <td>{{value.cantidad}}</td>
+            <td class="align-item-center">{{value.nombre}}</td>
+            <td class="align-item-center">{{value.cantidad}}</td>
           
             <td class="align-item-center">
                 <a href="{% url 'agregar_producto' value.producto_id %}"
@@ -39,7 +40,7 @@
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 <div class="alert alert-danger">
                     Sin productos
                 </div>
@@ -49,14 +50,17 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="4">
-                Total: ${{importe_total_carro}}
-                <a class="nav-link" href="{% url 'pagar' total=importe_total_carro  %}">
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary">pagar</button>
-                </div>
-                </a>
-            </td>
+            {% if importe_total_carro >= 1 %}
+                <td colspan="5">
+                    Total<h5>${{importe_total_carro}}</h5>
+                    <a class="nav-link" href="{% url 'pagar' total=importe_total_carro  %}">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary">pagar</button>
+                    </div>
+                    </a>
+                </td>
+            {% else %}
+            {% endif %}
         </tr>
 
     </tfoot>

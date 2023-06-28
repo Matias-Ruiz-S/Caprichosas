@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="{% static 'core/img/favicon.ico'%}">
-  <title>Caprichosa's</title>
+  <title>Caprichosa's | El Mejor Lugar Para Pedir Tu Capricho</title>
   <!-- CSS -->
   <link rel="stylesheet" href="{% static 'core/css/styles.css'%}">
   <!-- Font Awesome -->
@@ -41,30 +41,19 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Nosotros</a>
             </li>
-            <li class="nav-item px-5">
+            <li class="nav-item mx-5">
               <div class="dropdown">
-                <button
-                class="dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                 
-            <div id="cart" class="cart-icon">
-              <a href="#"> <img src="{% static 'core/img/carrito.png' %}" alt="Carrito" oncontextmenu="return false;"></a>
-              <div id="cart-quantity">{{ cart_count }}</div>
-          </div>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {%include "core/widget.html"%}
-            </ul>
-            <ul>
-
-          
-            </ul>
-
-          </div>
+                <button type="button" class="btn btn-tertiary dropdown-toggle" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                  <div id="cart" class="cart-icon">
+                    <a href="#"> <img src="{% static 'core/img/carrito.png' %}" alt="Carrito" oncontextmenu="return false;"></a>
+                    <div id="cart-quantity">{{ cart_count }}</div>
+                  </div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  {%include "core/widget.html"%}
+                </ul>
+                <ul></ul>
+              </div>
             </li>
           </ul>
         </div>
@@ -92,10 +81,26 @@
         <a class="nav-link pill-link" href="#">{{ Arma.nombre }} </a>
       </li>
     </ul>
-  
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-   
 
+    <div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
+      <div class="carousel-inner">
+        {% for i in armalist %}
+          <div class="carousel-item active">
+            <img src="{{ i.url }}" class="d-block w-100" alt="{{i.nombre}}"/>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  
+    <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-item">
         {% for i in armalist %}
           <img class="d-block w-100" src='{{ i.url }}' alt="{{i.nombre}}">
@@ -109,7 +114,7 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-    </div>
+    </div> -->
  
     
 
