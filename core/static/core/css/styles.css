@@ -403,3 +403,11 @@ body {
   padding: 20px 0;
   text-align: center;
 }
+
+
+.nav-fondo {
+  background-image: url(../img/bodybg.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
