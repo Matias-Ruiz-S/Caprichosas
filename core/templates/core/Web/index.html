@@ -75,18 +75,17 @@
   
   <section>
 
-    <ul class="nav nav-pills nav-justified mb-3 mx-5 pt-3" id="ex1" role="tablist">
-   
+    <ul class="nav nav-pills nav-justified mb-3 mx-5 pt-3" id="ex2" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link pill-link" href="#">{{ Arma.nombre }} </a>
+        <a class="nav-link pill-link" href="#">{{ Arma.nombre }}</a>
       </li>
     </ul>
-
+    
     <div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
       <div class="carousel-inner">
         {% for i in armalist %}
-          <div class="carousel-item active">
-            <img src="{{ i.imgurl }}" class="d-block w-100" alt="{{i.nombre}}"/>
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ i.imgurl }}" class="d-block w-100" alt="{{ i.nombre }}">
           </div>
         {% endfor %}
       </div>
