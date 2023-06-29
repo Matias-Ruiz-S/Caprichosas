@@ -1,3 +1,4 @@
+from django.http import QueryDict
 from django.shortcuts import redirect, render
 from  .carro  import Carro
 from .forms import *
@@ -227,18 +228,20 @@ def restar(request, producto_id):
 
 
 def pagar(request,total):
-    print(total)
+  
+    
+
+    print(request.POST)
     total = total
     buy_order = str(1)
     session_id = str(1)
     return_url = 'http://127.0.0.1:8000/terminar/'
 
-    tipo_pago = TIPO_PAGO.objects.filter()
+    tipo_pago = request.GET.get("tipo_despacho")
     tipo_despacho = TIPO_DESPACHO.objects.filter()
     status = STATUS.objects.filter()
-
-    print(tipo_despacho)
-    
+    q = QueryDict()
+    print(q)
     amount = total
     total= str('{:,.0f}'.format(total).replace(",", "@").replace(".", ",").replace("@", "."))
     try:
@@ -257,6 +260,8 @@ def pagar(request,total):
 
 def terminar(request):
     token = request.GET.get("token_ws")
+   
+ 
     try:
         response = Transaction().commit(token) 
         return render(request, 'core/Carrito/terminar.html',{"token": token,"response": response})

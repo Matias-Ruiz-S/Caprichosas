@@ -38,3 +38,15 @@ class orderForm (ModelForm):
     class Meta :
         model = ORDEN_PEDIDO
         fields= '__all__'
+
+
+class pagoForm (forms.Form):
+    cliente = forms.CharField()
+    total = forms.IntegerField()
+    num_order = forms.IntegerField()
+    ubicacion = forms.CharField()
+    tipo_despacho = forms.CharField()
+    tipo_pago = forms.CharField()
+    status = forms.CharField()
+    descripcion = forms.CharField()
+  
