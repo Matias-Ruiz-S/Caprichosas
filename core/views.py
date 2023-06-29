@@ -244,7 +244,7 @@ def pagar(request,total):
     try:
         response = Transaction().create(buy_order, session_id, amount, return_url)
         context = {'total':total,"response":response, 'tipo_pago': tipo_pago, 'tipo_despacho': tipo_despacho, 'status': status}
-        print(amount)
+       
 
         return render(request, 'core/Carrito/pagar.html', context) 
     except TransbankError as e:
