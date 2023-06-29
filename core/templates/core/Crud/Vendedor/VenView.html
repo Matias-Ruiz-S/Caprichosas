@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'core/img/favicon.ico'%}">
+    <title>Caprichosa's | El Mejor Lugar Para Pedir Tu Capricho</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/styles.css'%}">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+  
+</head>
+<header>
+    <label for="">resepcion</label>
+</header>
+<hr>
+<body>
+    <div  style="float: right;">
+
+        <div class="row">
+            <label for="">Pedidos entrantes</label>
+            {% for i in orders %}
+            <div class="col-12">
+                <label for=""> {{ i.tipo_despacho.Tnombre }} </label>
+                <label for=""> {{ i.status.tipo_estado }} </label>
+                <a href="{% url 'detalleOrder' i.id %}">Detalle </a>
+            </div>
+           
+            {% endfor %}
+    
+     </div>
+    </div>
+
+    <div  style="float: left;">
+    
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

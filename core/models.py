@@ -83,12 +83,14 @@ class ORDEN_PEDIDO(models.Model):
     ubicacion = models.CharField( max_length=100 )
     tipo_pago =  models.ForeignKey( TIPO_PAGO,on_delete=models.CASCADE )
     tipo_despacho = models.ForeignKey( TIPO_DESPACHO,on_delete=models.CASCADE )
+    descripcion = models.CharField(max_length=500,null=True)
     status = models.ForeignKey( STATUS,on_delete=models.CASCADE )
 
 
 class PRODUCTO_ORDEN(models.Model):
     id_orden = models.ForeignKey( ORDEN_PEDIDO,on_delete=models.CASCADE )
     id_producto = models.ForeignKey(PRODUCTO,on_delete=models.CASCADE)
+    
 
 
 class BOLETA(models.Model):     

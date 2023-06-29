@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from  .carro  import Carro
 from .forms import *
-from .models import CATEGORIA,PRODUCTO,INGREDIENTE, BOLETA, ORDEN_PEDIDO, TIPO_PAGO, STATUS, TIPO_DESPACHO
+from .models import CATEGORIA,PRODUCTO,INGREDIENTE, BOLETA, ORDEN_PEDIDO, PRODUCTO_ORDEN, TIPO_PAGO, STATUS, TIPO_DESPACHO
 from transbank.webpay.webpay_plus.transaction import Transaction
 from transbank.error.transbank_error import TransbankError
 from django.core.paginator import Paginator
@@ -30,7 +30,7 @@ def listar(request,slug):
     #filtra los productos en la categoria
     cat  = CATEGORIA.objects.get(slug=slug)
     producto  = PRODUCTO.objects.filter(is_activo=True,categoria=cat)
-    
+
     contex = {'productos':producto,'categorias':categorias, 'Arma':catArma,
               'armalist':productoArma}
     
@@ -326,3 +326,22 @@ def generar_boleta(data, id):
     boleta.total = int(total_no_point)
 
     return boleta
+
+
+def viewVendedor(request):
+    ordenes = ORDEN_PEDIDO.objects.exclude(status = 1)
+    context = {
+        'orders': ordenes
+    }
+    return render(request,'core/Crud/Vendedor/VenView.html',context)
+
+
+def detalleOrder(request,num):
+    ordenes = ORDEN_PEDIDO.objects.exclude(status = 1)
+    detalle = PRODUCTO_ORDEN.objects.filter(id_orden= num)
+
+    context = {
+        'orders': ordenes,
+        'detalle':detalle
+    }
+    return render(request,'core/Crud/Vendedor/detallePedido.html',context)

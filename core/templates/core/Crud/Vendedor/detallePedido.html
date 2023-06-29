@@ -1,0 +1,29 @@
+{% extends 'core/Crud/Vendedor/VenView.html'%}
+{% load static %}
+{% block content %}
+<div class="row">
+
+    <!---->
+   <div>
+    {%for i in detalle %}
+    <label for=""> cliente : {{i.id_orden.nombre_cliente}}</label>
+    <hr>
+    <label for=""> despacho :{{i.id_orden.tipo_despacho.Tnombre}}</label>
+
+    <hr>
+    <label for=""> productos </label>
+    <label for=""> {{i.id_producto.nombre}}</label>
+    <hr>
+    <label for=""> descripcion de preparacion</label>
+    <label for="">{{i.id_orden.descripcion}} </label>
+    {% endfor%}
+   </div>
+  
+    <!---->
+ 
+   
+
+
+</div>
+
+{% endblock %}

@@ -29,5 +29,9 @@ urlpatterns = [
     path("restar/<int:producto_id>/", restar, name="restar"),
     path("limpiar/<int:producto_id>/", limpiar_carro, name="limpiar"),
     path("eliminar/<int:producto_id>/", eliminar_producto, name="eliminar"),
+    #vendedor
+    path("recepcion", viewVendedor, name="viewVendedor"),
+    path("detalle-pedido/<num>", detalleOrder, name="detalleOrder"),
+
 ]
 
