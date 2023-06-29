@@ -1,48 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-    {%load static%}
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="{% static 'core/img/favicon.ico'%}">
+    <link rel="icon" type="image/x-icon" href="{% static 'core/img/favicon.ico' %}">
     <title>Caprichosa's | El Mejor Lugar Para Pedir Tu Capricho</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'core/css/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
-  
+
 </head>
+
 <header>
-    <label for="">resepcion</label>
+    <nav class="navbar">
+        <div class="container d-flex justify-content-center">
+            <a class="navbar-brand" href="#">Recepción</a>
+        </div>
+    </nav>
 </header>
-<hr>
+<br>
+<br>
 <body>
-    <div  style="float: right;">
-
+    <div class="container">
         <div class="row">
-            <label for="">Pedidos entrantes</label>
-            {% for i in orders %}
-            <div class="col-12">
-                <label for=""> {{ i.tipo_despacho.Tnombre }} </label>
-                <label for=""> {{ i.status.tipo_estado }} </label>
-                <a href="{% url 'detalleOrder' i.id %}">Detalle </a>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Pedidos entrantes</h5>
+                        {% for i in orders %}
+                        <div class="card-text">
+                            <label for="">Tipo de despacho: {{ i.tipo_despacho.Tnombre }}</label>
+                            <br>
+                            <label for="">Estado: {{ i.status.tipo_estado }}</label>
+                            <br>
+                            <a href="{% url 'detalleOrder' i.id %}">Detalle</a>
+                            <hr>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-           
-            {% endfor %}
-    
-     </div>
-    </div>
 
-    <div  style="float: left;">
-    
-        {% block content %}
-        {% endblock %}
+            <div class="col-md-6">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
     </div>
+<br>
+    <footer class="footer text-center text-white mt-3">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <div class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" target="_blank" role="button"><i
+                        class="fab fa-facebook-f"></i></a>
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/caprichosas_cafe/"
+                    target="_blank" role="button"><i class="fab fa-instagram"></i></a>
+            </div>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
 
+        <!-- Location and number -->
+        <div class="text-center p-1">
+            <i class="fas fa-location-dot"></i> España 243 Placilla, Valparaíso
+        </div>
+        <div class="wanumber text-center p-2">
+            <i class="fab fa-whatsapp"></i> +56 9 53684070
+        </div>
+        <!-- Location and number -->
+    </footer>
 </body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
 </html>
